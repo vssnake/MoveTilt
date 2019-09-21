@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MoveTiltRepo.iml" filepath="$PROJECT_DIR$/MoveTiltRepo.iml" group="MoveTiltRepo" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MoveTiltRepo/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/MoveTilt.iml" group="MoveTilt" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MoveTilt/app" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" group="MoveTilt/buildSrc" />
     </modules>
   </component>
 </project>
