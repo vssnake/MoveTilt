@@ -1,9 +1,10 @@
 package com.uratxe.movetilt
 
+import com.uratxe.mvit.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : BaseActivity<MainViewModel,MainData,MainActivityCommands>() {
+class MainActivity : ProyectActivity<MainViewModel, MainData, MainViewEvent>() {
 
 
     override fun layoutId() = R.layout.activity_main
@@ -14,9 +15,9 @@ class MainActivity : BaseActivity<MainViewModel,MainData,MainActivityCommands>()
 
     override fun setupViews() {
 
-        am_retreive.setOnClickListener { viewModel.onCommandSend(MainActivityCommands.RetrieveUserCommand) }
+        am_retreive.setOnClickListener { viewModel.onEvent(MainViewEvent.RetrieveUserEvent) }
 
-        am_error.setOnClickListener { viewModel.onCommandSend(MainActivityCommands.ProcessErrorCommand) }
+        am_error.setOnClickListener { viewModel.onEvent(MainViewEvent.ProcessErrorEvent("025 Error")) }
     }
 
     override fun onModelReceived(data: MainData) {
@@ -26,11 +27,13 @@ class MainActivity : BaseActivity<MainViewModel,MainData,MainActivityCommands>()
 
 
 
+
+
 }
 
 
-sealed class MainActivityCommands  {
-    object RetrieveUserCommand : MainActivityCommands()
-    object ProcessErrorCommand : MainActivityCommands()
+sealed class MainViewEvent  {
+    object RetrieveUserEvent : MainViewEvent()
+    data class ProcessErrorEvent(val typeError : String) : MainViewEvent()
 }
 

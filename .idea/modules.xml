@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="move-tilt/app" />
-      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" group="move-tilt/buildSrc" />
-      <module fileurl="file://$PROJECT_DIR$/move-tilt.iml" filepath="$PROJECT_DIR$/move-tilt.iml" group="move-tilt" />
+      <module fileurl="file://$PROJECT_DIR$/MoveTiltRepo.iml" filepath="$PROJECT_DIR$/MoveTiltRepo.iml" group="MoveTiltRepo" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MoveTiltRepo/app" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" group="MoveTiltRepo/buildSrc" />
     </modules>
   </component>
 </project>
