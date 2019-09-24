@@ -1,35 +1,26 @@
-package com.uratxe.movetilt
+package com.uratxe.mvit
 
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import android.view.ViewGroup
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.appcompat.widget.ContentFrameLayout
-
-import androidx.lifecycle.ViewModel
 
 
-
-
-
-abstract class BaseViewModel<ModelData,ViewModelCommands>(application: Application) : AndroidViewModel(application){
+abstract class BaseViewModel<ModelData,ViewEvent>(application: Application) : AndroidViewModel(application){
 
     val liveData : MutableLiveData<BaseLiveData<ModelData>> = MutableLiveData()
 
-    abstract fun onCommandSend(commands : ViewModelCommands)
+    abstract fun onEvent(commands : ViewEvent)
 
 }
 
 
 
 
-abstract class BaseActivity<ViewModel : BaseViewModel<ModelData,ViewModelCommands>,
+abstract class BaseActivity<ViewModel : BaseViewModel<ModelData, ViewModelCommands>,
         ModelData,ViewModelCommands>() : AppCompatActivity(){
 
 
@@ -55,7 +46,7 @@ abstract class BaseActivity<ViewModel : BaseViewModel<ModelData,ViewModelCommand
 
     }
 
-    open val viewDelegate : BaseViewDelegate =  MainViewDelegate()
+    abstract val viewDelegate : BaseViewDelegate
 
     open fun onDataReceive(liveData: BaseLiveData<ModelData>) {
         when(liveData){
@@ -71,6 +62,15 @@ abstract class BaseActivity<ViewModel : BaseViewModel<ModelData,ViewModelCommand
 
     abstract fun onModelReceived(data: ModelData)
 
+}
+
+interface BaseViewDelegate {
+
+    var context : Context
+
+    fun processError(error: Throwable)
+    fun showLoading(boolean: Boolean)
+    fun initViewDelegate(view : ViewGroup)
 }
 
 sealed class BaseLiveData<T>{
