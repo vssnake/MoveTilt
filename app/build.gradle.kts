@@ -6,6 +6,7 @@ import com.uratxe.movetilt.Libs
 plugins{
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("com.google.firebase.appdistribution")
     kotlin("android")
     kotlin("android.extensions")
 }
@@ -23,12 +24,30 @@ android {
         versionName  = Android.versionName
         testInstrumentationRunner  = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        create("release"){
+            storeFile = File("uratxeSign.jks")
+            storePassword = "topotaRaven69"
+            keyAlias = "miRatu"
+            keyPassword = "Iri_okupa"
+        }
+    }
+
     buildTypes {
         getByName("release"){
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            firebaseAppDistribution{
+                releaseNotes = "Hola que haze + firma Pro"
+                testers = "virtual.solid.snake@gmail.com, iratxels25@gmail.com"
+                serviceCredentialsFile = "/Users/vssnake/Documents/movetilt-appdistrbution.json"
+            }
+            signingConfig = signingConfigs.getByName("release")
         }
     }
+
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
