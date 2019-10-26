@@ -7,27 +7,25 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import android.view.ViewGroup
+import kotlin.reflect.KClass
 
 
-abstract class BaseViewModel<ModelData,ViewEvent>(application: Application) : AndroidViewModel(application){
+abstract class BaseViewModel<ModelData,ViewEvent,EventModel>(application: Application) : AndroidViewModel(application){
 
-    val liveData : MutableLiveData<BaseLiveData<ModelData>> = MutableLiveData()
+    val liveData : MutableLiveData<BaseLiveData<ModelData,EventModel>> = MutableLiveData()
+    val viewData : MutableLiveData<ViewEvent> = MutableLiveData()
 
-    abstract fun onEvent(commands : ViewEvent)
+    abstract fun onEventFromView(commands : ViewEvent)
 
 }
 
-
-
-
-abstract class BaseActivity<ViewModel : BaseViewModel<ModelData, ViewModelCommands>,
-        ModelData,ViewModelCommands>() : AppCompatActivity(){
-
+abstract class BaseActivity<ViewModel : BaseViewModel<ModelData, ViewModelCommands,EventModel>,
+        ModelData,ViewModelCommands,EventModel>() : AppCompatActivity(){
 
     @LayoutRes abstract fun layoutId(): Int
 
-    val viewModel by lazy {
-        ViewModelProvider.AndroidViewModelFactory(application).create(getViewModelClass())
+    open val viewModel by lazy {
+        ViewModelProvider.AndroidViewModelFactory(application).create(getViewModelClass().java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,19 +46,23 @@ abstract class BaseActivity<ViewModel : BaseViewModel<ModelData, ViewModelComman
 
     abstract val viewDelegate : BaseViewDelegate
 
-    open fun onDataReceive(liveData: BaseLiveData<ModelData>) {
+
+    open fun onDataReceive(liveData: BaseLiveData<ModelData,EventModel>) {
         when(liveData){
             is BaseLiveData.Error -> viewDelegate.processError(liveData.t)
             is BaseLiveData.TypeData -> onModelReceived(liveData.data)
             is BaseLiveData.Loading -> viewDelegate.showLoading(liveData.loading)
+            is BaseLiveData.Event2View -> onEventModelReceived(liveData.events)
         }
     }
 
-    abstract fun getViewModelClass() : Class<ViewModel>
+    abstract fun getViewModelClass() : KClass<ViewModel>
 
     abstract fun setupViews()
 
     abstract fun onModelReceived(data: ModelData)
+
+    abstract fun onEventModelReceived(data: EventModel)
 
 }
 
@@ -73,13 +75,15 @@ interface BaseViewDelegate {
     fun initViewDelegate(view : ViewGroup)
 }
 
-sealed class BaseLiveData<T>{
+sealed class BaseLiveData<Data,EventsModel>{
 
-    class Error<T>(val t : Throwable) : BaseLiveData<T>()
+    class Error<Data,EventsModel>(val t : Throwable) : BaseLiveData<Data,EventsModel>()
 
-    class Loading<T>(val loading : Boolean) : BaseLiveData<T>()
+    class Loading<Data,EventsModel>(val loading : Boolean) : BaseLiveData<Data,EventsModel>()
 
-    data class TypeData<T>(val data : T) : BaseLiveData<T>()
+    data class TypeData<Data,EventsModel>(val data : Data) : BaseLiveData<Data,EventsModel>()
+
+    class Event2View<Data,EventsModel>(val events : EventsModel) : BaseLiveData<Data,EventsModel>()
 }
 
 sealed class ViewModelIncomingCommands

@@ -18,4 +18,6 @@ class DerivedViewDelegate(b: BaseViewDelegate) : BaseViewDelegate by b{
     override fun showLoading(boolean: Boolean) {
        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+
 }
