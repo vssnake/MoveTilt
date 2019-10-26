@@ -17,6 +17,12 @@ object  Libs{
     const val espresso = "3.2.0"
     const val androidJunit = "1.1.1"
     const val junit = "4.12"
+
+    const val appAuth = "0.7.1"
+
+    const val koin = "2.0.1"
+
+    const val jwtdecode = "1.3.0"
 }
 
 object Firebase{
