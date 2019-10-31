@@ -23,6 +23,8 @@ object  Libs{
     const val koin = "2.0.1"
 
     const val jwtdecode = "1.3.0"
+
+    const val apollo = "1.2.0"
 }
 
 object Firebase{
