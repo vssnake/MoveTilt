@@ -10,6 +10,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     id("kotlin-android-extensions")
+    id("com.apollographql.android")
 }
 
 
@@ -32,6 +33,10 @@ android {
             keyAlias = "miRatu"
             keyPassword = "Iri_okupa"
         }
+    }
+
+    apollo {
+        setGenerateTransformedQueries(true)
     }
 
     buildTypes {
@@ -80,6 +85,10 @@ dependencies {
     implementation("org.koin:koin-android-scope:${Libs.koin}")
 
     implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
+
+    implementation("com.apollographql.apollo:apollo-runtime:${Libs.apollo}")
+
+    compileOnly("org.jetbrains:annotations:13.0")
 
 
 }
