@@ -2,18 +2,16 @@ package com.uratxe.animelist.features.animelist
 
 import android.app.Application
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.uratxe.animelist.NavigatorHelper
-import com.uratxe.animelist.data.AuthModule
-import com.uratxe.mvit.BaseViewModel
+import com.uratxe.mvit.MVVMIViewModel
 import com.uratxe.mvit.Either
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 
-class AnimeListViewModel(application: Application) : BaseViewModel<AnimeListData,AnimeListViewEvent,AnimeListModelEvent>(application) {
+class AnimeListViewModel(application: Application) : MVVMIViewModel<AnimeListData,AnimeListViewEvent,AnimeListModelEvent>(application) {
 
 
+    val animeRepository = AnimeRepository()
 
 
     @ExperimentalCoroutinesApi
@@ -27,17 +25,7 @@ class AnimeListViewModel(application: Application) : BaseViewModel<AnimeListData
         val referred = CompletableDeferred("")
 
 
-
-
-
-
         test.asLiveData(MainScope().coroutineContext)
-
-
-
-
-
-
 
     }
 
@@ -50,6 +38,14 @@ class AnimeListViewModel(application: Application) : BaseViewModel<AnimeListData
 
     override fun onEventFromView(commands: AnimeListViewEvent) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    @InternalCoroutinesApi
+    override fun onViewInitialized() {
+        GlobalScope.launch {
+            animeRepository.animes()
+        }
+
     }
 
     /*override fun onEvent(commands: AnimeListViewEvent) {

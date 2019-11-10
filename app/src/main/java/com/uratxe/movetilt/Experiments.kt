@@ -1,8 +1,7 @@
 package com.uratxe.movetilt
 
-import android.view.ViewGroup
 import android.widget.Toast
-import com.uratxe.mvit.BaseViewDelegate
+import com.uratxe.mvit.MVVMIDelegate
 
 
 
@@ -10,7 +9,7 @@ import com.uratxe.mvit.BaseViewDelegate
 
 
 
-class DerivedViewDelegate(b: BaseViewDelegate) : BaseViewDelegate by b{
+class DerivedViewDelegate(b: MVVMIDelegate) : MVVMIDelegate by b{
     override fun processError(error: Throwable) {
         Toast.makeText(context,error.message,Toast.LENGTH_LONG ).show()
     }
