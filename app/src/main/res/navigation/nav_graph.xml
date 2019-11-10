@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.uratxe.animelist.features.main.AuthFragment"
+        android:label="AuthFragment" >
+        <action
+            android:id="@+id/action_authFragment_to_animeListFragment"
+            app:destination="@id/animeListFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/authFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/animeListFragment"
+        android:name="com.uratxe.animelist.features.animelist.AnimeListFragment"
+        android:label="activity_anime_list"
+        tools:layout="@layout/activity_anime_list" />
+
+</navigation>

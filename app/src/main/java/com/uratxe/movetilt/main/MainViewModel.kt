@@ -1,10 +1,10 @@
 package com.uratxe.movetilt.main
 
 import android.app.Application
-import com.uratxe.mvit.BaseLiveData
-import com.uratxe.mvit.BaseViewModel
+import com.uratxe.mvit.MVVMILiveData
+import com.uratxe.mvit.MVVMIViewModel
 
-class MainViewModel(application: Application) : BaseViewModel<MainData, MainViewEvent, MainModelEvent>(application) {
+class MainViewModel(application: Application) : MVVMIViewModel<MainData, MainViewEvent, MainModelEvent>(application) {
 
     override fun onEventFromView(commands: MainViewEvent) {
 
@@ -15,7 +15,7 @@ class MainViewModel(application: Application) : BaseViewModel<MainData, MainView
     }
 
     private fun retrieveUser(){
-        liveData.value = BaseLiveData.TypeData(
+        liveData.value = MVVMILiveData.TypeData(
             MainData(
                 "virtual.solid.snake@gmail.com",
                 "vssnake"
@@ -24,11 +24,14 @@ class MainViewModel(application: Application) : BaseViewModel<MainData, MainView
     }
 
     private fun processError(typeErrorString : String){
-        liveData.value = BaseLiveData.Error(Throwable(typeErrorString))
+        liveData.value = MVVMILiveData.Error(Throwable(typeErrorString))
     }
 
     private fun sendCommand(){
-        liveData.value = BaseLiveData.Event2View(MainModelEvent.StartStopLocation(true))
+        liveData.value = MVVMILiveData.Event2View(MainModelEvent.StartStopLocation(true))
+    }
+
+    override fun onViewInitialized() {
     }
 
 
