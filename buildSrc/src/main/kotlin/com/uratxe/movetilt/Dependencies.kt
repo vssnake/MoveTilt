@@ -24,7 +24,7 @@ object  Libs{
 
     const val jwtdecode = "1.3.0"
 
-    const val apollo = "1.2.0"
+    const val apollo = "1.2.1"
 }
 
 object Firebase{
@@ -34,5 +34,7 @@ object Firebase{
 object AndroidX{
     const val coreKtx = "1.1.0"
     const val appCompat = "1.1.0"
+
+    const val navigation = "2.1.0"
 
 }

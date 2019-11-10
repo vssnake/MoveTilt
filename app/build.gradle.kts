@@ -11,6 +11,7 @@ plugins {
     kotlin("android.extensions")
     id("kotlin-android-extensions")
     id("com.apollographql.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 
@@ -37,6 +38,7 @@ android {
 
     apollo {
         setGenerateTransformedQueries(true)
+        setGenerateKotlinModels(true)
     }
 
     buildTypes {
@@ -87,6 +89,10 @@ dependencies {
     implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
 
     implementation("com.apollographql.apollo:apollo-runtime:${Libs.apollo}")
+    implementation("com.apollographql.apollo:apollo-coroutines-support:${Libs.apollo}")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:${AndroidX.navigation}")
+    implementation("androidx.navigation:navigation-ui-ktx:${AndroidX.navigation}")
 
     compileOnly("org.jetbrains:annotations:13.0")
 

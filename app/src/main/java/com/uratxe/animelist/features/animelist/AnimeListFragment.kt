@@ -5,12 +5,9 @@ import com.uratxe.movetilt.*
 
 import kotlin.reflect.KClass
 
-class AnimeListActivity : KoinProyectActivity<AnimeListViewModel, AnimeListData, AnimeListViewEvent, AnimeListModelEvent>() {
+class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListData, AnimeListViewEvent, AnimeListModelEvent>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_anime_list)
-    }
+
 
     override fun layoutId(): Int { return R.layout.activity_anime_list }
 
