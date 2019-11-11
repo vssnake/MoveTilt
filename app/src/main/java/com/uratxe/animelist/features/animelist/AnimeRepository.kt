@@ -29,7 +29,7 @@ class AnimeRepository {
             search = Input.absent()))
             .toFlow()
             .map(apolloCallChecker<AnimeListQuery.Data>())
-            .catch(catchApolloError())
+            .catch(catchApolloError)
             .collect {
 
             }
@@ -46,10 +46,8 @@ class AnimeRepository {
         }
     }
 
-    fun catchApolloError(): suspend FlowCollector<Either.Left<Failure>>.(cause: Throwable) -> Unit {
-        return { exception ->
-            emit(Either.Left(Failure.ServerError(exception)))
-        }
+    val  catchApolloError: suspend FlowCollector<Either.Left<Failure>>.(cause: Throwable) -> Unit =  { exception ->
+        emit(Either.Left(Failure.ServerError(exception)))
     }
 
 
