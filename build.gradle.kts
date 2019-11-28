@@ -9,7 +9,7 @@ buildscript {
         
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-alpha02")
+        classpath("com.android.tools.build:gradle:4.0.0-alpha03")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
         classpath ("com.google.gms:google-services:4.3.2")
         classpath ("com.google.firebase:firebase-appdistribution-gradle:1.1.0")

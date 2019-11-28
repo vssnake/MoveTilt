@@ -68,6 +68,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
     implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
     implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
+
     testImplementation("junit:junit:${Libs.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.espresso}")
@@ -93,6 +94,11 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:${AndroidX.navigation}")
     implementation("androidx.navigation:navigation-ui-ktx:${AndroidX.navigation}")
+
+    implementation("com.google.android.material:material:${Libs.material}")
+
+    implementation( "com.github.bumptech.glide:glide:${Libs.glide}")
+    annotationProcessor("com.github.bumptech.glide:compiler:${Libs.glide}")
 
     compileOnly("org.jetbrains:annotations:13.0")
 

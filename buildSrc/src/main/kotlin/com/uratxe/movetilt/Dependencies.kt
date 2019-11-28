@@ -25,6 +25,10 @@ object  Libs{
     const val jwtdecode = "1.3.0"
 
     const val apollo = "1.2.1"
+
+    const val material = "1.1.0-beta01"
+
+    const val glide = "4.1.0"
 }
 
 object Firebase{
