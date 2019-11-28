@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import com.uratxe.animelist.NavigatorHelper
 import com.uratxe.animelist.data.AuthModule
 import com.uratxe.animelist.features.animelist.AnimeListViewModel
+import com.uratxe.animelist.features.animelist.data.AnimeApiDataSource
+import com.uratxe.animelist.features.animelist.data.AnimeDBDatasource
+import com.uratxe.animelist.features.animelist.data.AnimeDataSource
+import com.uratxe.animelist.features.animelist.data.AnimeRepository
 import com.uratxe.mvit.*
+import com.uratxe.mvit.exception.Failure
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -16,6 +21,7 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.parameter.DefinitionParameters
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
@@ -63,7 +69,7 @@ class MainProyectViewDelegate  : MVVMIDelegate {
     }
 
 
-    override fun processError(error: Throwable) {
+    override fun processError(error: Failure) {
         //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -87,17 +93,26 @@ class ProyectApp : Application(){
         startKoin{
             androidLogger()
             androidContext(this@ProyectApp)
-            modules(appModule)
+            modules(listOf(appModule,animeModule))
         }
     }
+
+    val DB = "DB"
+    val API = "API"
 
     val appModule = module {
 
         single { AuthModule() }
-
-
-        viewModel { AnimeListViewModel(get()) }
+        viewModel { AnimeListViewModel(get(),get()) }
     }
+
+    val animeModule = module {
+        single<AnimeDataSource>(named(API)) { AnimeApiDataSource() }
+        single<AnimeDataSource>(named(DB)) { AnimeDBDatasource() }
+        single { AnimeRepository(get(named(API)),get(named(DB))) }
+    }
+
+
 }
 
 fun parametersActivity(activity: Activity): DefinitionParameters {
