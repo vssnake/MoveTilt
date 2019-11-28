@@ -24,7 +24,7 @@ class MainViewModel(application: Application) : MVVMIViewModel<MainData, MainVie
     }
 
     private fun processError(typeErrorString : String){
-        liveData.value = MVVMILiveData.Error(Throwable(typeErrorString))
+        //liveData.value = MVVMILiveData.Error(Throwable(typeErrorString))
     }
 
     private fun sendCommand(){

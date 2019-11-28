@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:label="Anime Test"
             android:name="com.uratxe.animelist.features.main.AnimeMainActivity"
+            android:label="Anime Test"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,13 +33,6 @@
                     android:path="/oauth2redirect"
                     android:scheme="tpt" />
                 <!-- note that the leading "/" is required for pathPrefix -->
-            </intent-filter>
-        </activity>
-        <activity android:name=".main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

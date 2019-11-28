@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.uratxe.mvit.exception.Failure
 import kotlin.reflect.KClass
 
 
@@ -55,7 +56,7 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
 
     open fun onDataReceive(liveData: MVVMILiveData<ModelData,EventModel>) {
         when(liveData){
-            is MVVMILiveData.Error -> viewDelegate.processError(liveData.t)
+            is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
             is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
             is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
             is MVVMILiveData.Event2View -> onEventModelReceived(liveData.events)
@@ -118,7 +119,7 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
 
     open fun onDataReceive(liveData: MVVMILiveData<ModelData,EventModel>) {
         when(liveData){
-            is MVVMILiveData.Error -> viewDelegate.processError(liveData.t)
+            is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
             is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
             is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
             is MVVMILiveData.Event2View -> onEventModelReceived(liveData.events)
@@ -139,14 +140,14 @@ interface MVVMIDelegate {
 
     var context : Context
 
-    fun processError(error: Throwable)
+    fun processError(error: Failure)
     fun showLoading(boolean: Boolean)
     fun initViewDelegate(view : ViewGroup)
 }
 
 sealed class MVVMILiveData<Data,EventsModel>{
 
-    class Error<Data,EventsModel>(val t : Throwable) : MVVMILiveData<Data,EventsModel>()
+    class Error<Data,EventsModel>(val failure : Failure) : MVVMILiveData<Data,EventsModel>()
 
     class Loading<Data,EventsModel>(val loading : Boolean) : MVVMILiveData<Data,EventsModel>()
 
