@@ -18,28 +18,42 @@ class AnimeListViewModel(application: Application, val animeRepository: AnimeRep
 
 
 
+    var numberPage : Int = 1
 
+
+    @UseExperimental(InternalCoroutinesApi::class)
     override fun onEventFromView(commands: AnimeListViewEvent) {
+
+        when (commands){
+            AnimeListViewEvent.OnMorePagesLoad -> getMoreAnimes()
+        }
     }
 
     @InternalCoroutinesApi
     override fun onViewInitialized() {
 
         liveData.value = MVVMILiveData.Loading(true)
-        
-        animeRepository.getAnimes(1).collectMain{
-            
+
+        getMoreAnimes()
+
+
+    }
+
+    @InternalCoroutinesApi
+    fun getMoreAnimes(){
+        animeRepository.getAnimes(numberPage).collectMain{
+
             liveData.value = MVVMILiveData.Loading(false)
-            
+
             it.either(
                 { failure ->
                     liveData.value = MVVMILiveData.Error(failure)
                 },
                 {data ->
+                    numberPage = numberPage.inc()
                     liveData.value = MVVMILiveData.TypeData(data)
                 })
         }
-
     }
 
 
