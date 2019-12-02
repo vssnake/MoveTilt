@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
 class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListQuery.Data, AnimeListViewEvent, AnimeListModelEvent>() {
 
 
-    val adapter = AnimeListAdapter()
+    private val adapter by lazy {AnimeListAdapter(viewModel)}
 
     override fun layoutId(): Int { return R.layout.activity_anime_list }
 
@@ -19,8 +19,9 @@ class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListQuery
 
     override fun setupViews() {
 
-        aal_rv.adapter = adapter
         aal_rv.layoutManager = LinearLayoutManager(context)
+        aal_rv.adapter = adapter
+
 
 
     }
