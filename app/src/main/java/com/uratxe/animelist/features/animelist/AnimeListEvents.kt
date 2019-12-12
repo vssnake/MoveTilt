@@ -4,7 +4,7 @@ data class AnimeListData(val email: String,val nickName : String)
 
 
 sealed class AnimeListViewEvent  {
-    object RetrieveUserEvent : AnimeListViewEvent()
+    object OnMorePagesLoad : AnimeListViewEvent()
     data class ProcessErrorEvent(val typeError : String) : AnimeListViewEvent()
 }
 
