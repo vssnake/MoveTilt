@@ -59,6 +59,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 
@@ -101,6 +105,12 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:${Libs.glide}")
 
     compileOnly("org.jetbrains:annotations:13.0")
+
+
+    implementation ("androidx.ui:ui-tooling:0.1.0-dev02")
+    implementation ("androidx.ui:ui-layout:0.1.0-dev02")
+    implementation ("androidx.ui:ui-material:0.1.0-dev02")
+
 
 
 }
