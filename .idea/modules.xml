@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/MoveTilt-app.iml" filepath="$PROJECT_DIR$/app/MoveTilt-app.iml" group="MoveTilt/app" />
       <module fileurl="file://$PROJECT_DIR$/MoveTiltRepo.iml" filepath="$PROJECT_DIR$/MoveTiltRepo.iml" group="MoveTiltRepo" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTiltRepo_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTiltRepo_buildSrc.iml" group="MoveTiltRepo/MoveTiltRepo_buildSrc" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt_buildSrc.iml" group="MoveTilt/MoveTilt_buildSrc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt_buildSrc.iml" group="MoveTilt/buildSrc/MoveTilt_buildSrc" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MoveTiltRepo/app" />
     </modules>
   </component>
