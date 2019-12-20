@@ -21,6 +21,7 @@
         android:id="@+id/animeListFragment"
         android:name="com.uratxe.animelist.features.animelist.AnimeListFragment"
         android:label="activity_anime_list"
-        tools:layout="@layout/activity_anime_list" />
+        tools:layout="@layout/activity_anime_list" >
+    </fragment>
 
 </navigation>

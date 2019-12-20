@@ -12,7 +12,7 @@ object  Libs{
     const val androidGradlePlugin = "3.6.0-alpha12"
     const val kotlinVersion = "1.3.50"
     const val lifecycle_version = "2.2.0-alpha05"
-    const val constraintLayout = "1.1.3"
+    const val constraintLayout = "2.0.0-beta3"
 
     const val espresso = "3.2.0"
     const val androidJunit = "1.1.1"
