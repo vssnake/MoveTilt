@@ -156,7 +156,5 @@ sealed class MVVMILiveData<Data,EventsModel>{
     class Event2View<Data,EventsModel>(val events : EventsModel) : MVVMILiveData<Data,EventsModel>()
 }
 
-sealed class ViewModelIncomingCommands
-
 fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
     liveData.observe(this, Observer(body))
