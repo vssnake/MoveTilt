@@ -1,10 +1,12 @@
 package com.uratxe.animelist.features.animelist
 
 import android.os.Bundle
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uratxe.AnimeListQuery
 import com.uratxe.movetilt.*
 import kotlinx.android.synthetic.main.activity_anime_list.*
+import kotlinx.android.synthetic.main.loading_layout.*
 
 import kotlin.reflect.KClass
 
@@ -23,6 +25,7 @@ class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListQuery
         aal_rv.adapter = adapter
 
 
+        motionLayout.loop(true)
 
     }
 

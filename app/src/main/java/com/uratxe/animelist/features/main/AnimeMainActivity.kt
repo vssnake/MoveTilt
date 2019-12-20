@@ -19,16 +19,34 @@ class AnimeMainActivity : AppCompatActivity() {
 
     lateinit var navController : NavHostFragment
 
+    var isAlreadyLoad = false
+    val alreadyLoadkey = "alreadyLoadKey"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anime_main)
         navController = anm_navigator as NavHostFragment
+
+
+        savedInstanceState?.let {
+            isAlreadyLoad = it.getBoolean(alreadyLoadkey,false)
+        }
+
         isAccessTokenValid()
+
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean(alreadyLoadkey,isAlreadyLoad)
     }
 
     private fun isAccessTokenValid(){
 
-        if (authModule.isAccessTokenValid()){
+        if (authModule.isAccessTokenValid() && !isAlreadyLoad){
+            isAlreadyLoad = true
             NavigatorHelper.launchAnimeList(navController.navController)
         }
 
@@ -47,4 +65,6 @@ class AnimeMainActivity : AppCompatActivity() {
         }
 
     }
+
+
 }
