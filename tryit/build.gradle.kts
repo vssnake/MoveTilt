@@ -10,7 +10,6 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     id("kotlin-android-extensions")
-    id("com.apollographql.android")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -19,7 +18,7 @@ android {
     compileSdkVersion(Android.compiledSdk)
     buildToolsVersion = Android.buildToolsVersion
     defaultConfig {
-        applicationId = "com.uratxe.movetilt"
+        applicationId = "com.uratxe.tryit"
         minSdkVersion(Android.minSdk)
         targetSdkVersion(Android.targetSdk)
         versionCode = Android.versionCode
@@ -36,10 +35,6 @@ android {
         }
     }
 
-    apollo {
-        setGenerateTransformedQueries(true)
-        setGenerateKotlinModels(true)
-    }
 
     buildTypes {
         getByName("release") {
@@ -72,48 +67,44 @@ android {
 
 dependencies {
     //implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Libs.kotlinVersion}")
-    implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
-    implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
-    implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61")
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.core:core-ktx:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta4")
+    implementation(project(":core"))
 
-    testImplementation("junit:junit:${Libs.junit}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.espresso}")
+    testImplementation("junit:junit:4.13")
+    androidTestImplementation("androidx.test.ext:junit:1.1.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 
-    implementation("com.google.firebase:firebase-core:${Firebase.core}")
+    implementation("com.google.firebase:firebase-core:17.2.2")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.lifecycle_version}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.lifecycle_version}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     // For Kotlin use lifecycle-viewmodel-ktx
 
-    implementation("androidx.lifecycle:lifecycle-common-java8:${Libs.lifecycle_version}")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Libs.lifecycle_version}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
     implementation("org.koin:koin-android-viewmodel:${Libs.koin}")
     implementation("org.koin:koin-android-scope:${Libs.koin}")
 
-    implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
 
-    implementation("com.apollographql.apollo:apollo-runtime:${Libs.apollo}")
-    implementation("com.apollographql.apollo:apollo-coroutines-support:${Libs.apollo}")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.2.1")
+    implementation("androidx.navigation:navigation-ui-ktx:2.2.1")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:${AndroidX.navigation}")
-    implementation("androidx.navigation:navigation-ui-ktx:${AndroidX.navigation}")
+    implementation("com.google.android.material:material:1.1.0")
 
-    implementation("com.google.android.material:material:${Libs.material}")
-
-    implementation( "com.github.bumptech.glide:glide:${Libs.glide}")
-    annotationProcessor("com.github.bumptech.glide:compiler:${Libs.glide}")
-
-    compileOnly("org.jetbrains:annotations:13.0")
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 
 
-    implementation ("androidx.ui:ui-tooling:0.1.0-dev02")
-    implementation ("androidx.ui:ui-layout:0.1.0-dev02")
-    implementation ("androidx.ui:ui-material:0.1.0-dev02")
+
+    implementation ("androidx.ui:ui-tooling:0.1.0-dev04")
+    implementation ("androidx.ui:ui-layout:0.1.0-dev04")
+    implementation ("androidx.ui:ui-material:0.1.0-dev04")
 
 
 

@@ -3,6 +3,7 @@ import com.uratxe.movetilt.Libs
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    extra["kotlin_version"] = "1.3.61"
     repositories {
         google()
         jcenter()
@@ -11,7 +12,7 @@ buildscript {
 
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-alpha06")
+        classpath("com.android.tools.build:gradle:4.0.0-alpha09")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61")
         classpath ("com.google.gms:google-services:4.3.3")
         classpath ("com.google.firebase:firebase-appdistribution-gradle:1.2.0")
