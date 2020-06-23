@@ -76,6 +76,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
     implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
     implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
+    implementation(project(mapOf("path" to ":core")))
 
     testImplementation("junit:junit:${Libs.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
