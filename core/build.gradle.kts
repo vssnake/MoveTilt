@@ -5,7 +5,6 @@ import com.uratxe.movetilt.Libs
 
 plugins {
     id("com.android.library")
-    id("com.google.gms.google-services")
     kotlin("android")
     kotlin("android.extensions")
     id("kotlin-android-extensions")
@@ -50,16 +49,16 @@ android {
 
 dependencies {
     //implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72")
     implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.core:core-ktx:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta4")
+    implementation("androidx.core:core-ktx:1.3.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta7")
 
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 
-    implementation("com.google.firebase:firebase-core:17.2.2")
+    implementation("com.google.firebase:firebase-core:17.4.3")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
@@ -74,8 +73,8 @@ dependencies {
     implementation("org.koin:koin-android-scope:${Libs.koin}")
 
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.2.1")
-    implementation("androidx.navigation:navigation-ui-ktx:2.2.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
 
     implementation("com.google.android.material:material:1.1.0")
 
@@ -93,6 +92,9 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.0.0")
 
     implementation ("joda-time:joda-time:2.10.4")
+
+    implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
+    implementation("com.google.android.gms:play-services-maps:17.0.0")
 
 
 
