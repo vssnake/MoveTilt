@@ -1,6 +1,8 @@
 package com.uratxe.movetilt
 
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.uratxe.mvit.MVVMIDelegate
@@ -8,21 +10,24 @@ import com.uratxe.mvit.exception.Failure
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
 
 
 val ioPool = newFixedThreadPoolContext(3,"IO")
 val mainPool = CoroutineScope(Dispatchers.Main)
 
-@InternalCoroutinesApi
-inline fun <T>Flow<T>.collectMain(crossinline action: suspend (value: T) -> Unit): Job =
-
-    GlobalScope.launch(Dispatchers.Main) {
-        collect(object : FlowCollector<T> {
-            override suspend fun emit(value: T) = action(value)
-        })
+inline fun <T>Flow<T>.collectBlock(crossinline action: suspend (value: T) -> Unit) =
+    runBlocking {
+        collect{
+            action(it)
+        }
     }
 
-
+inline fun ViewModel.launch(crossinline action: suspend CoroutineScope.() -> Unit) = run {
+    viewModelScope.launch {
+        action()
+    }
+}
 
 class DerivedViewDelegate(b: MVVMIDelegate) : MVVMIDelegate by b{
     override fun processError(error: Failure) {
