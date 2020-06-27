@@ -11,7 +11,7 @@ object Android{
 object  Libs{
     const val androidGradlePlugin = "3.6.0-alpha12"
     const val kotlinVersion = "1.3.50"
-    const val lifecycle_version = "2.2.0-alpha05"
+    const val lifecycle_version = "2.2.0"
     const val constraintLayout = "2.0.0-beta3"
 
     const val espresso = "3.2.0"
@@ -20,7 +20,7 @@ object  Libs{
 
     const val appAuth = "0.7.1"
 
-    const val koin = "2.0.1"
+    const val koin = "2.1.6"
 
     const val jwtdecode = "1.3.0"
 

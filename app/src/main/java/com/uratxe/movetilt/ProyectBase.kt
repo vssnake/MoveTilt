@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.view.ViewGroup
+import androidx.lifecycle.SavedStateHandle
 import com.uratxe.animelist.NavigatorHelper
 import com.uratxe.animelist.data.AuthModule
 import com.uratxe.animelist.features.animelist.AnimeListViewModel
@@ -16,8 +17,9 @@ import com.uratxe.mvit.*
 import com.uratxe.mvit.exception.Failure
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.ext.android.getStateViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.parameter.DefinitionParameters
 import org.koin.core.parameter.parametersOf
@@ -30,7 +32,7 @@ abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData, ViewMod
 
     override val viewModel: ViewModel
         get()  {
-            return getViewModel(getViewModelClass())
+            return getStateViewModel(getViewModelClass())
         }
 
 
@@ -45,11 +47,9 @@ abstract class ProyectActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelCo
 abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
         ModelData,ViewModelCommands,EventModel> : ProyectFragment<ViewModel,ModelData,ViewModelCommands,EventModel>(){
 
-    override val viewModel: ViewModel
-        get()  {
-            return getViewModel(getViewModelClass())
-        }
-
+    override val viewModel: ViewModel by lazy {
+        getStateViewModel(getViewModelClass())
+    }
 
 }
 abstract class ProyectFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
@@ -103,7 +103,7 @@ class ProyectApp : Application(){
     val appModule = module {
 
         single { AuthModule() }
-        viewModel { AnimeListViewModel(get(),get()) }
+        viewModel { (handle: SavedStateHandle)  -> AnimeListViewModel(get(),handle,get()) }
     }
 
     val animeModule = module {

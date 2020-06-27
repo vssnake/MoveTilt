@@ -1,19 +1,16 @@
 package com.uratxe.animelist.features.animelist
 
 import android.app.Application
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.uratxe.AnimeListQuery
 import com.uratxe.animelist.features.animelist.data.AnimeRepository
-import com.uratxe.movetilt.collectMain
-import com.uratxe.movetilt.ioPool
-import com.uratxe.mvit.MVVMIViewModel
-import com.uratxe.mvit.Either
+import com.uratxe.movetilt.launch
 import com.uratxe.mvit.MVVMILiveData
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import com.uratxe.mvit.MVVMIViewModel
+import kotlinx.coroutines.flow.collect
 
 
-class AnimeListViewModel(application: Application, val animeRepository: AnimeRepository)
+class AnimeListViewModel(application: Application,val savedStateHandle: SavedStateHandle, val animeRepository: AnimeRepository)
     : MVVMIViewModel<AnimeListQuery.Data,AnimeListViewEvent,AnimeListModelEvent>(application) {
 
 
@@ -21,7 +18,7 @@ class AnimeListViewModel(application: Application, val animeRepository: AnimeRep
     var numberPage : Int = 1
 
 
-    @UseExperimental(InternalCoroutinesApi::class)
+
     override fun onEventFromView(commands: AnimeListViewEvent) {
 
         when (commands){
@@ -29,7 +26,7 @@ class AnimeListViewModel(application: Application, val animeRepository: AnimeRep
         }
     }
 
-    @InternalCoroutinesApi
+
     override fun onViewInitialized() {
 
         liveData.value = MVVMILiveData.Loading(true)
@@ -39,24 +36,26 @@ class AnimeListViewModel(application: Application, val animeRepository: AnimeRep
 
     }
 
-    @InternalCoroutinesApi
+
     fun getMoreAnimes(){
-        animeRepository.getAnimes(numberPage).collectMain{
 
-            liveData.value = MVVMILiveData.Loading(false)
+        launch {
+            animeRepository.getAnimes(numberPage).collect{
 
-            it.either(
-                { failure ->
-                    liveData.value = MVVMILiveData.Error(failure)
-                },
-                {data ->
-                    numberPage = numberPage.inc()
-                    liveData.value = MVVMILiveData.TypeData(data)
-                })
+                liveData.value = MVVMILiveData.Loading(false)
+
+                it.either(
+                    { failure ->
+                      
+                        liveData.value = MVVMILiveData.Error(failure)
+                    },
+                    {data ->
+                        numberPage = numberPage.inc()
+                        liveData.value = MVVMILiveData.TypeData(data)
+                    })
+            }
         }
     }
-
-
 }
 
 
