@@ -16,8 +16,12 @@ import kotlin.reflect.KClass
 
 abstract class MVVMIViewModel<ModelData,ViewEvent,EventModel>(application: Application) : AndroidViewModel(application){
 
-    val liveData : MutableLiveData<MVVMILiveData<ModelData,EventModel>> = MutableLiveData()
-    val viewData : MutableLiveData<ViewEvent> = MutableLiveData()
+    val liveData : MutableLiveData<MVVMILiveData<ModelData,EventModel>> by lazy {
+        MutableLiveData<MVVMILiveData<ModelData,EventModel>>()
+    }
+    val viewData : MutableLiveData<ViewEvent> by lazy {
+        MutableLiveData<ViewEvent>()
+    }
 
     abstract fun onEventFromView(commands : ViewEvent)
 
@@ -47,6 +51,7 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
         }
 
         setupViews()
+
 
         viewModel.onViewInitialized()
     }
@@ -79,13 +84,11 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
     @LayoutRes abstract fun layoutId(): Int
 
     open val viewModel by lazy {
-        ViewModelProvider.AndroidViewModelFactory(activity!!.application).create(getViewModelClass().java)
+        ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(getViewModelClass().java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
