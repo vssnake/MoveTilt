@@ -25,8 +25,8 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
-abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
-        ModelData,ViewModelCommands,EventModel> : ProyectActivity<ViewModel,ModelData,ViewModelCommands,EventModel>(){
+abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
+        ModelData> : ProyectActivity<ViewModel,ModelData>(){
 
     override val viewModel: ViewModel
         get()  {
@@ -35,15 +35,15 @@ abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData, ViewMod
 
 
 }
-abstract class ProyectActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
-        ModelData,ViewModelCommands,EventModel> : MVVMIActivity<ViewModel,ModelData,ViewModelCommands,EventModel>(){
+abstract class ProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
+        ModelData> : MVVMIActivity<ViewModel,ModelData>(){
 
     override val viewDelegate: MVVMIDelegate = MainProyectViewDelegate()
 
 }
 
-abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
-        ModelData,ViewModelCommands,EventModel> : ProyectFragment<ViewModel,ModelData,ViewModelCommands,EventModel>(){
+abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
+        ModelData> : ProyectFragment<ViewModel,ModelData>(){
 
     override val viewModel: ViewModel
         get()  {
@@ -52,8 +52,8 @@ abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData, ViewMod
 
 
 }
-abstract class ProyectFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
-        ModelData,ViewModelCommands,EventModel> : MVVMIFragment<ViewModel,ModelData,ViewModelCommands,EventModel>(){
+abstract class ProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
+        ModelData> : MVVMIFragment<ViewModel,ModelData>(){
 
     override val viewDelegate: MVVMIDelegate = MainProyectViewDelegate()
 
