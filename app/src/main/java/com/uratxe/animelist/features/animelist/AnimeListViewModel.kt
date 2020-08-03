@@ -9,24 +9,29 @@ import com.uratxe.movetilt.ioPool
 import com.uratxe.mvit.MVVMIViewModel
 import com.uratxe.mvit.Either
 import com.uratxe.mvit.MVVMILiveData
+import com.uratxe.mvit.ModelFromViewInterface
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 
 class AnimeListViewModel(application: Application, val animeRepository: AnimeRepository)
-    : MVVMIViewModel<AnimeListQuery.Data,AnimeListViewEvent,AnimeListModelEvent>(application) {
+    : MVVMIViewModel<AnimeListQuery.Data>(application) {
 
 
 
     var numberPage : Int = 1
 
 
-    @UseExperimental(InternalCoroutinesApi::class)
+   /* @UseExperimental(InternalCoroutinesApi::class)
     override fun onEventFromView(commands: AnimeListViewEvent) {
 
         when (commands){
             AnimeListViewEvent.OnMorePagesLoad -> getMoreAnimes()
         }
+    }*/
+
+    override fun onEventFromView(commands: ModelFromViewInterface) {
+        TODO("Not yet implemented")
     }
 
     @InternalCoroutinesApi
@@ -55,6 +60,8 @@ class AnimeListViewModel(application: Application, val animeRepository: AnimeRep
                 })
         }
     }
+
+
 
 
 }
