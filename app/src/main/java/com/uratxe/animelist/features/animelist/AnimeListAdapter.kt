@@ -45,7 +45,7 @@ class AnimeListAdapter(val animeListViewModel: AnimeListViewModel)
             override fun loadMoreItems() {
                 isLoading = true
                 //you have to call loadmore items to get more data
-                animeListViewModel.onEventFromView(AnimeListViewEvent.OnMorePagesLoad)
+                animeListViewModel.onEventFromView(OnMorePagesLoad)
             }
         })
     }
