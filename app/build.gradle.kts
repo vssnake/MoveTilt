@@ -76,6 +76,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
     implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
     implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
+    implementation(project(mapOf("path" to ":core")))
 
     testImplementation("junit:junit:${Libs.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
@@ -84,16 +85,17 @@ dependencies {
     implementation("com.google.firebase:firebase-core:${Firebase.core}")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.lifecycle_version}")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:${Libs.lifecycle_version}")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.lifecycle_version}")
-    // For Kotlin use lifecycle-viewmodel-ktx
 
     implementation("androidx.lifecycle:lifecycle-common-java8:${Libs.lifecycle_version}")
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Libs.lifecycle_version}")
 
-    implementation("org.koin:koin-android-viewmodel:${Libs.koin}")
-    implementation("org.koin:koin-android-scope:${Libs.koin}")
+
+    implementation("org.koin:koin-android:${Libs.koin}")
+    implementation("org.koin:koin-androidx-scope:${Libs.koin}")
+    implementation("org.koin:koin-androidx-viewmodel:${Libs.koin}")
 
     implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
 

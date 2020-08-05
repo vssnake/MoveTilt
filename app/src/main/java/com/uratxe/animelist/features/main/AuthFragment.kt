@@ -14,7 +14,6 @@ import com.uratxe.movetilt.R
 import com.uratxe.movetilt.parametersActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.ext.android.inject
-import org.koin.android.scope.currentScope
 import org.koin.core.parameter.parametersOf
 
 class AuthFragment : Fragment() {
