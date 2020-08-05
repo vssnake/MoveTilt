@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.*
 class AnimeRepository(private val animeApiDataSource : AnimeDataSource,private val animeDbDataSource: AnimeDataSource) {
 
 
-    @InternalCoroutinesApi
+
     fun getAnimes(page : Int): Flow<Either<Failure, AnimeListQuery.Data>> {
 
         return animeApiDataSource.getAnimes(page)

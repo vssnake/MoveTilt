@@ -14,18 +14,24 @@ import com.uratxe.mvit.exception.Failure
 import kotlin.reflect.KClass
 
 
-abstract class MVVMIViewModel<ModelData,ViewEvent,EventModel>(application: Application) : AndroidViewModel(application){
+interface ModelFromViewInterface
 
-    val liveData : MutableLiveData<MVVMILiveData<ModelData,EventModel>> = MutableLiveData()
-    val viewData : MutableLiveData<ViewEvent> = MutableLiveData()
+abstract class MVVMIViewModel<ModelData>(application: Application) : AndroidViewModel(application){
 
-    abstract fun onEventFromView(commands : ViewEvent)
+    val liveData : MutableLiveData<MVVMILiveData<ModelData>> by lazy {
+        MutableLiveData<MVVMILiveData<ModelData>>()
+    }
+    val viewData : MutableLiveData<ModelFromViewInterface> by lazy {
+        MutableLiveData<ModelFromViewInterface>()
+    }
+
+    abstract fun onEventFromView(commands : ModelFromViewInterface)
 
     abstract fun onViewInitialized()
 
 }
 
-abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
+abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
         ModelData,ViewModelCommands,EventModel>() : AppCompatActivity(){
 
     @LayoutRes abstract fun layoutId(): Int
@@ -48,18 +54,18 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
 
         setupViews()
 
+
         viewModel.onViewInitialized()
     }
 
     abstract val viewDelegate : MVVMIDelegate
 
 
-    open fun onDataReceive(liveData: MVVMILiveData<ModelData,EventModel>) {
+    open fun onDataReceive(liveData: MVVMILiveData<ModelData>) {
         when(liveData){
             is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
             is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
             is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
-            is MVVMILiveData.Event2View -> onEventModelReceived(liveData.events)
         }
     }
 
@@ -73,19 +79,17 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
 
 }
 
-abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelCommands,EventModel>,
+abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
         ModelData,ViewModelCommands,EventModel>() : Fragment(){
 
     @LayoutRes abstract fun layoutId(): Int
 
     open val viewModel by lazy {
-        ViewModelProvider.AndroidViewModelFactory(activity!!.application).create(getViewModelClass().java)
+        ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(getViewModelClass().java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
@@ -117,12 +121,11 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData, ViewModelComm
     abstract val viewDelegate : MVVMIDelegate
 
 
-    open fun onDataReceive(liveData: MVVMILiveData<ModelData,EventModel>) {
+    open fun onDataReceive(liveData: MVVMILiveData<ModelData>) {
         when(liveData){
             is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
             is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
             is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
-            is MVVMILiveData.Event2View -> onEventModelReceived(liveData.events)
         }
     }
 
@@ -145,15 +148,14 @@ interface MVVMIDelegate {
     fun initViewDelegate(view : ViewGroup)
 }
 
-sealed class MVVMILiveData<Data,EventsModel>{
+sealed class MVVMILiveData<Data>{
 
-    class Error<Data,EventsModel>(val failure : Failure) : MVVMILiveData<Data,EventsModel>()
+    class Error<Data>(val failure : Failure) : MVVMILiveData<Data>()
 
-    class Loading<Data,EventsModel>(val loading : Boolean) : MVVMILiveData<Data,EventsModel>()
+    class Loading<Data>(val loading : Boolean) : MVVMILiveData<Data>()
 
-    data class TypeData<Data,EventsModel>(val data : Data) : MVVMILiveData<Data,EventsModel>()
+    data class TypeData<Data>(val data : Data) : MVVMILiveData<Data>()
 
-    class Event2View<Data,EventsModel>(val events : EventsModel) : MVVMILiveData<Data,EventsModel>()
 }
 
 fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
