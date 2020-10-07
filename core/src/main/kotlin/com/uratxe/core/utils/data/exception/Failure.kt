@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.uratxe.mvit.exception;
+package com.uratxe.core.utils.data.exception;
+
+import com.uratxe.core.utils.data.ApiError
 
 /**
  * Base Class for handling errors/failures/exceptions.
  * Every feature specific failure should extend [FeatureFailure] class.
  */
 sealed class Failure {
-    object NetworkConnection : Failure()
-    class ServerError(val throwable: Throwable) : Failure()
-
+    class ApiFailure(val apiError: ApiError) : Failure()
     /** * Extend this class for feature specific failures.*/
     abstract class FeatureFailure: Failure()
 }
+
+
+class LoginErrorFailure(val apiError: ApiError) : Failure.FeatureFailure()

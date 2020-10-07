@@ -48,12 +48,10 @@ fun Bitmap.vectorToBitmap(context: Context, @DrawableRes id: Int, @ColorInt colo
 }
 
 fun Bitmap.loadBitmapFromView(v: View): Bitmap? {
-    val bitmap: Bitmap
     val canvas: Canvas
     v.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     v.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-    bitmap =
-        Bitmap.createBitmap(v.measuredWidth, v.measuredHeight, Bitmap.Config.ARGB_8888)
+    val bitmap: Bitmap = Bitmap.createBitmap(v.measuredWidth, v.measuredHeight, Bitmap.Config.ARGB_8888)
     canvas = Canvas(bitmap)
     v.layout(0, 0, v.measuredWidth, v.measuredHeight)
     v.draw(canvas)

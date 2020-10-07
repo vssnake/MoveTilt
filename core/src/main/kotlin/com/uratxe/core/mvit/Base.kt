@@ -1,4 +1,4 @@
-package com.uratxe.mvit
+package com.uratxe.core.mvit
 
 import android.app.Application
 import android.content.Context
@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.uratxe.mvit.exception.Failure
+import androidx.fragment.app.FragmentManager
+import com.uratxe.core.utils.data.exception.Failure
 import kotlin.reflect.KClass
 
 
@@ -18,12 +19,8 @@ interface ModelFromViewInterface
 
 abstract class MVVMIViewModel<ModelData>(application: Application) : AndroidViewModel(application){
 
-    val liveData : MutableLiveData<MVVMILiveData<ModelData>> by lazy {
-        MutableLiveData<MVVMILiveData<ModelData>>()
-    }
-    val viewData : MutableLiveData<ModelFromViewInterface> by lazy {
-        MutableLiveData<ModelFromViewInterface>()
-    }
+    val liveData : MutableLiveData<MVVMILiveData<ModelData>> = MutableLiveData()
+    protected val viewData : MutableLiveData<ModelFromViewInterface> = MutableLiveData()
 
     abstract fun onEventFromView(commands : ModelFromViewInterface)
 
@@ -32,7 +29,7 @@ abstract class MVVMIViewModel<ModelData>(application: Application) : AndroidView
 }
 
 abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
-        ModelData,ViewModelCommands,EventModel>() : AppCompatActivity(){
+        ModelData>() : AppCompatActivity(){
 
     @LayoutRes abstract fun layoutId(): Int
 
@@ -44,7 +41,8 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
 
-        viewDelegate.initViewDelegate(findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup)
+        viewDelegate.initViewDelegate(findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup,
+        supportFragmentManager)
 
         observe(viewModel.liveData){
             it?.let {
@@ -53,7 +51,6 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
         }
 
         setupViews()
-
 
         viewModel.onViewInitialized()
     }
@@ -75,12 +72,12 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
 
     abstract fun onModelReceived(data: ModelData)
 
-    abstract fun onEventModelReceived(data: EventModel)
+    abstract fun onEventModelReceived(data: ModelFromViewInterface)
 
 }
 
 abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
-        ModelData,ViewModelCommands,EventModel>() : Fragment(){
+        ModelData>() : Fragment(){
 
     @LayoutRes abstract fun layoutId(): Int
 
@@ -90,6 +87,8 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onCreateView(
@@ -103,7 +102,7 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewDelegate.initViewDelegate(view as ViewGroup)
+        viewDelegate.initViewDelegate(view as ViewGroup,childFragmentManager)
 
         setupViews()
 
@@ -135,8 +134,6 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
 
     abstract fun onModelReceived(data: ModelData)
 
-    abstract fun onEventModelReceived(data: EventModel)
-
 }
 
 interface MVVMIDelegate {
@@ -145,7 +142,7 @@ interface MVVMIDelegate {
 
     fun processError(error: Failure)
     fun showLoading(boolean: Boolean)
-    fun initViewDelegate(view : ViewGroup)
+    fun initViewDelegate(view : ViewGroup,fragmentDelegate : FragmentManager)
 }
 
 sealed class MVVMILiveData<Data>{

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.uratxe.mvit
+package com.uratxe.core.mvit
 
 
 
@@ -35,8 +35,8 @@ sealed class Either<out L, out R> {
     val isRight get() = this is Right<R>
     val isLeft get() = this is Left<L>
 
-    fun <L> left(a: L) = Either.Left(a)
-    fun <R> right(b: R) = Either.Right(b)
+    fun <L> left(a: L) = Left(a)
+    fun <R> right(b: R) = Right(b)
 
     fun either(fnL: (L) -> Unit, fnR: (R) -> Unit): Any =
         when (this) {
