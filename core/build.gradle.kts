@@ -1,7 +1,3 @@
-import com.uratxe.movetilt.Android
-import com.uratxe.movetilt.AndroidX
-import com.uratxe.movetilt.Firebase
-import com.uratxe.movetilt.Libs
 
 plugins {
     id("com.android.library")
@@ -13,13 +9,13 @@ plugins {
 
 
 android {
-    compileSdkVersion(Android.compiledSdk)
-    buildToolsVersion = Android.buildToolsVersion
+    compileSdkVersion(29)
+    buildToolsVersion = "29.0.1"
     defaultConfig {
-        minSdkVersion(Android.minSdk)
-        targetSdkVersion(Android.targetSdk)
-        versionCode = Android.versionCode
-        versionName = Android.versionName
+        minSdkVersion(21)
+        targetSdkVersion(29)
+        versionCode = 2
+        versionName = "1.0"
     }
 
 
@@ -69,8 +65,8 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
-    implementation("org.koin:koin-android-viewmodel:${Libs.koin}")
-    implementation("org.koin:koin-android-scope:${Libs.koin}")
+    implementation("org.koin:koin-android-viewmodel:2.1.6")
+    implementation("org.koin:koin-android-scope:2.1.6")
 
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
