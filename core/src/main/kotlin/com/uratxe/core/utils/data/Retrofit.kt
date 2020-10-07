@@ -3,9 +3,11 @@ package com.baturamobile.utils
 import android.util.Log
 import com.baturamobile.utils.data.exception.exception.RestException
 import com.google.gson.Gson
+import com.uratxe.core.utils.CallbackCustom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.Buffer
 import org.joda.time.DateTime
@@ -15,7 +17,16 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.lang.reflect.Type
+import java.security.KeyStore
+import java.security.SecureRandom
+import java.security.cert.CertificateException
+import java.security.cert.X509Certificate
 import java.util.*
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.SSLContext.*
+import javax.net.ssl.TrustManager
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 fun Response<*>.getHeaderdate() : DateTime {
     return try {
@@ -53,22 +64,6 @@ fun Request.bodyToString(): String? {
     }
 }
 
-fun <T> Call<T>.queueExtension(callbackCustom: CallbackCustom<T>){
-    GlobalScope.launch {
-        try {
-            val response = execute()
-            GlobalScope.launch(Dispatchers.Main){
-                callbackCustom.onResponse(this@queueExtension,response)
-            }
-        }catch (e: Throwable){
-            GlobalScope.launch(Dispatchers.Main){
-                callbackCustom.onFailure(this@queueExtension,e)
-            }
-
-        }
-
-    }
-}
 
 interface CallbackCustom<T> {
     /**
@@ -120,4 +115,56 @@ fun <T> Call<T>.newCallback(success: (response: Response<T>?) -> Unit, failure: 
             success(response)
         }
     })
+}
+
+fun getUnsafeOkHttpClient(): OkHttpClient {
+    return try {
+        // Create a trust manager that does not validate certificate chains
+        val trustAllCerts = arrayOf<TrustManager>(
+            object : X509TrustManager {
+                @Throws(CertificateException::class)
+                override fun checkClientTrusted(
+                    chain: Array<X509Certificate?>?,
+                    authType: String?
+                ) {
+                }
+
+                @Throws(CertificateException::class)
+                override fun checkServerTrusted(
+                    chain: Array<X509Certificate?>?,
+                    authType: String?
+                ) {
+                }
+
+                override fun getAcceptedIssuers(): Array<X509Certificate?>? {
+                    return arrayOf()
+                }
+            }
+        )
+
+        // Install the all-trusting trust manager
+        val sslContext = getInstance("SSL")
+        sslContext.init(null, trustAllCerts, SecureRandom())
+        // Create an ssl socket factory with our all-trusting manager
+        val sslSocketFactory = sslContext.socketFactory
+        val trustManagerFactory: TrustManagerFactory =
+            TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+        trustManagerFactory.init(null as KeyStore?)
+        val trustManagers: Array<TrustManager> =
+            trustManagerFactory.trustManagers
+        check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+            "Unexpected default trust managers:" + trustManagers.contentToString()
+        }
+
+        val trustManager =
+            trustManagers[0] as X509TrustManager
+
+
+        val builder = OkHttpClient.Builder()
+        builder.sslSocketFactory(sslSocketFactory, trustManager)
+        builder.hostnameVerifier(HostnameVerifier { _, _ -> true })
+        builder.build()
+    } catch (e: Exception) {
+        throw RuntimeException(e)
+    }
 }

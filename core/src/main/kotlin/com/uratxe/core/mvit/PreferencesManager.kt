@@ -1,4 +1,4 @@
-package com.uratxe.mvit
+package com.uratxe.core.mvit
 
 import android.content.Context
 import android.content.SharedPreferences
