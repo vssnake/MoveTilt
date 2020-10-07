@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.util.TypedValue
 import android.view.WindowManager
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
@@ -31,6 +32,11 @@ fun Activity.changeStatusBarColor( @ColorRes color : Int){
         window.statusBarColor = ContextCompat.getColor(this, color)
 
     }
+}
+fun Context.themeColor(@AttrRes attrRes: Int): Int {
+    val typedValue = TypedValue()
+    theme.resolveAttribute (attrRes, typedValue, true)
+    return typedValue.data
 }
 
 
