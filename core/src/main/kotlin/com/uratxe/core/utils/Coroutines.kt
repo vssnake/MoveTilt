@@ -1,7 +1,6 @@
 package com.uratxe.core.utils
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flow
@@ -21,4 +20,8 @@ fun <T> Flow<T>.launchUI() : Flow<T> {
 fun <T> Flow<T>.launchGlobal() : Flow<T> {
     launchIn(GlobalScope)
     return this
+}
+
+fun <T> runBlockingIO(block: suspend CoroutineScope.() -> T): T{
+    return runBlocking(Dispatchers.IO,block)
 }
