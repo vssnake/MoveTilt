@@ -1,4 +1,4 @@
-package com.baturamobile.utils.validators
+package com.uratxe.core.utils.validators
 
 /**
  * Created by vssnake on 27/10/2017.
