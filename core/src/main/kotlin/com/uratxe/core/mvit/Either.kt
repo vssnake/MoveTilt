@@ -47,8 +47,8 @@ sealed class Either<out L, out R> {
 
 // Credits to Alex Hart -> https://proandroiddev.com/kotlins-nothing-type-946de7d464fb
 // Composes 2 functions
-fun <A, B, C> ((A) -> B).c(f: (B) -> C): (A) -> C = {
-    f(this(it))
+fun <A, B, C> ((A) -> B).c(fn: (B) -> C): (A) -> C = {
+    fn(this(it))
 }
 
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
