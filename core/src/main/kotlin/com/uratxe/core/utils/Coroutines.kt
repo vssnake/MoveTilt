@@ -1,15 +1,14 @@
 package com.uratxe.core.utils
 
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.*
 
 fun <T>getNormalFlow(block: suspend FlowCollector<T>.() -> Unit) : Flow<T> {
-    return flow<T>{
+    return flow<T> {
         block.invoke(this)
-    }.launchUI()
+    }
+        .flowOn(Dispatchers.IO)
+        .launchUI()
 }
 
 fun <T> Flow<T>.launchUI() : Flow<T> {
@@ -24,4 +23,8 @@ fun <T> Flow<T>.launchGlobal() : Flow<T> {
 
 fun <T> runBlockingIO(block: suspend CoroutineScope.() -> T): T{
     return runBlocking(Dispatchers.IO,block)
+}
+
+fun runUI(block: suspend CoroutineScope.() -> Unit){
+    GlobalScope.launch(Dispatchers.Main,block = block)
 }
