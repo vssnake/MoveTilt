@@ -28,3 +28,7 @@ fun <T> runBlockingIO(block: suspend CoroutineScope.() -> T): T{
 fun runUI(block: suspend CoroutineScope.() -> Unit){
     GlobalScope.launch(Dispatchers.Main,block = block)
 }
+
+fun runIO(block: suspend CoroutineScope.() -> Unit){
+    GlobalScope.launch(Dispatchers.IO,block = block)
+}

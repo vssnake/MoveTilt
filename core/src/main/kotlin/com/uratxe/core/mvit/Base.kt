@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.uratxe.core.utils.data.exception.Failure
+import com.uratxe.core.utils.runUI
 import kotlin.reflect.KClass
 
 
@@ -22,7 +23,13 @@ abstract class MVVMIViewModel<ModelData>(application: Application) : AndroidView
     val liveData : MutableLiveData<MVVMILiveData<ModelData>> = MutableLiveData()
     protected val viewData : MutableLiveData<ModelFromViewInterface> = MutableLiveData()
 
-    abstract fun onEventFromView(commands : ModelFromViewInterface)
+    protected abstract suspend fun onEventFromView(commands : ModelFromViewInterface)
+
+    fun lauchEventFromView(commands : ModelFromViewInterface){
+        runUI {
+            onEventFromView(commands)
+        }
+    }
 
     abstract fun onViewInitialized()
 
@@ -106,16 +113,14 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
 
         setupViews()
 
-        observe(viewModel.liveData){
-            it?.let {
-                onDataReceive(it)
-            }
-        }
+        observe(viewModel.liveData, sendLiveData)
 
         viewModel.onViewInitialized()
     }
 
-
+    private val sendLiveData = Observer<MVVMILiveData<ModelData>> {
+        onDataReceive(it)
+    }
 
     abstract val viewDelegate : MVVMIDelegate
 
@@ -157,3 +162,6 @@ sealed class MVVMILiveData<Data>{
 
 fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
     liveData.observe(this, Observer(body))
+
+fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: Observer<T>) =
+    liveData.observe(this, body)

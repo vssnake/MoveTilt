@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt.iml" group="MoveTilt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MoveTilt.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MoveTilt.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt.buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/MoveTilt.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/MoveTilt.core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt_buildSrc.iml" group="MoveTilt/MoveTilt_buildSrc" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="MoveTilt/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/core.iml" group="MoveTilt/core" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dev.MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/modules/dev.MoveTilt.iml" />
     </modules>
   </component>
 </project>

@@ -3,18 +3,9 @@ package com.uratxe.core.utils
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.TypedValue
-import android.widget.TextView
-import androidx.annotation.AttrRes
 import androidx.annotation.CallSuper
 import androidx.core.app.TaskStackBuilder
 import com.baturamobile.utils.LogStaticV2
-import com.baturamobile.utils.bodyToString
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.Request
-import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import retrofit2.Call
 import retrofit2.Response
@@ -95,7 +86,7 @@ inline fun <T> T?.ifNotNull(block: (T) -> Unit): T? {
     }
 }
 
-infix fun <T> T?.isNull(block: () -> Unit) : T? {
+inline fun <T> T?.ifNull(block: () -> Unit) : T? {
     if (this.isNull()) block()
     return this
 }
