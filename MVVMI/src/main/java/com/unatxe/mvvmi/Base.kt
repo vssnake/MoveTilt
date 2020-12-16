@@ -1,4 +1,4 @@
-package com.uratxe.mvit
+package com.unatxe.mvvmi
 
 import android.app.Application
 import android.content.Context

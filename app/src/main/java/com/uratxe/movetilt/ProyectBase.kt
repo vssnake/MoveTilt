@@ -3,10 +3,8 @@ package com.uratxe.movetilt
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.ViewGroup
 import androidx.lifecycle.SavedStateHandle
-import com.uratxe.animelist.NavigatorHelper
 import com.uratxe.animelist.data.AuthModule
 import com.uratxe.animelist.features.animelist.AnimeListViewModel
 import com.uratxe.animelist.features.animelist.data.AnimeApiDataSource
@@ -17,9 +15,7 @@ import com.uratxe.mvit.*
 import com.uratxe.mvit.exception.Failure
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.androidx.viewmodel.ext.android.getStateViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.parameter.DefinitionParameters
 import org.koin.core.parameter.parametersOf
@@ -27,7 +23,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
-abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
+abstract class KoinProyectActivity<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
         ModelData> : ProyectActivity<ViewModel,ModelData>(){
 
     override val viewModel: ViewModel
@@ -37,14 +33,14 @@ abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
 
 
 }
-abstract class ProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
-        ModelData> : MVVMIActivity<ViewModel,ModelData>(){
+abstract class ProyectActivity<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
+        ModelData> : com.unatxe.mvvmi.MVVMIActivity<ViewModel, ModelData>(){
 
-    override val viewDelegate: MVVMIDelegate = MainProyectViewDelegate()
+    override val viewDelegate: com.unatxe.mvvmi.MVVMIDelegate = MainProyectViewDelegate()
 
 }
 
-abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
+abstract class KoinProyectFragment<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
         ModelData> : ProyectFragment<ViewModel,ModelData>(){
 
     override val viewModel: ViewModel by lazy {
@@ -52,15 +48,15 @@ abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
     }
 
 }
-abstract class ProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
-        ModelData> : MVVMIFragment<ViewModel,ModelData>(){
+abstract class ProyectFragment<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
+        ModelData> : com.unatxe.mvvmi.MVVMIFragment<ViewModel, ModelData>(){
 
-    override val viewDelegate: MVVMIDelegate = MainProyectViewDelegate()
+    override val viewDelegate: com.unatxe.mvvmi.MVVMIDelegate = MainProyectViewDelegate()
 
 }
 
 
-class MainProyectViewDelegate  : MVVMIDelegate {
+class MainProyectViewDelegate  : com.unatxe.mvvmi.MVVMIDelegate {
     override lateinit var context: Context
 
 
@@ -86,7 +82,7 @@ class ProyectApp : Application(){
         super.onCreate()
         initKoin()
 
-        PreferencesManager.init(this)
+        com.unatxe.mvvmi.PreferencesManager.init(this)
     }
 
     private fun initKoin(){

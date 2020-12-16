@@ -1,10 +1,10 @@
 package com.uratxe.animelist.features.animelist
 
-import com.uratxe.mvit.ModelFromViewInterface
+import com.unatxe.mvvmi.ModelFromViewInterface
 
 data class AnimeListData(val email: String,val nickName : String)
 
-object OnMorePagesLoad : ModelFromViewInterface
+object OnMorePagesLoad : com.unatxe.mvvmi.ModelFromViewInterface
 
 sealed class AnimeListViewEvent  {
     data class ProcessErrorEvent(val typeError : String) : AnimeListViewEvent()

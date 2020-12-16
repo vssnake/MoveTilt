@@ -1,5 +1,3 @@
-import com.uratxe.movetilt.Libs
-
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
@@ -12,14 +10,14 @@ buildscript {
 
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.1")
+        classpath("com.android.tools.build:gradle:4.2.0-alpha16")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.71")
         classpath ("com.google.gms:google-services:4.3.3")
         classpath ("com.google.firebase:firebase-appdistribution-gradle:1.4.1")
         classpath("com.apollographql.apollo:apollo-gradle-plugin:1.2.0")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.2.2")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.71")
-
+        classpath ("com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+")
 
 
         // NOTE: Do not place your application dependencies here; they belong
