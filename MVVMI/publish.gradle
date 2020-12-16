@@ -1,0 +1,43 @@
+apply plugin: 'com.jfrog.bintray'
+
+group 'com.batura'
+version '1.1.1'
+
+project.ext {
+    mavGitUrl = 'https://github.com/BaturaMobile/ZeroBaturaLibrary'
+    mavProjectName = 'Zero_Batura_Library'
+    mavLibraryLicenses = ["Apache-2.0":'http://www.apache.org/licenses/LICENSE-2.0.txt']
+    mavLibraryDescription = "Desing System Batura Library"
+    mavPublishToMavenLocal = true
+    mavSiteUrl = 'https://github.com/BaturaMobile/ZeroBaturaLibrary'
+}
+
+def properties = new Properties()
+properties.load(new FileInputStream("local.properties"))
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    publications = ['mavenPublish']
+    configurations = ['archives']
+    override = true
+    pkg {
+        repo = "Android"
+        name = 'MVVMI'
+        userOrg = "baturamobilesolutions"
+        description = "MVVMI library"
+        publicDownloadNumbers = true
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/vssnake/MoveTilt'
+        version {
+            name = this.version
+            desc = "Version ${this.version}"
+            released = new Date()
+            vcsTag = this.version
+        }
+    }
+}
+
+
+
+apply from: 'https://raw.githubusercontent.com/sky-uk/gradle-maven-plugin/master/gradle-mavenizer.gradle'

@@ -17,16 +17,16 @@ interface ModelFromViewInterface
 
 abstract class MVVMIViewModel<ModelData>(application: Application) : AndroidViewModel(application){
 
-    val liveData : MutableLiveData<MVVMILiveData<ModelData>> = MutableLiveData()
-    val viewData : MutableLiveData<ModelFromViewInterface> = MutableLiveData()
+    val liveData : MutableLiveData<com.unatxe.mvvmi.MVVMILiveData<ModelData>> = MutableLiveData()
+    val viewData : MutableLiveData<com.unatxe.mvvmi.ModelFromViewInterface> = MutableLiveData()
 
-    abstract fun onEventFromView(commands : ModelFromViewInterface)
+    abstract fun onEventFromView(commands : com.unatxe.mvvmi.ModelFromViewInterface)
 
     abstract fun onViewInitialized()
 
 }
 
-abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
+abstract class MVVMIActivity<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
         ModelData>() : AppCompatActivity(){
 
     @LayoutRes abstract fun layoutId(): Int
@@ -52,14 +52,14 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
         viewModel.onViewInitialized()
     }
 
-    abstract val viewDelegate : MVVMIDelegate
+    abstract val viewDelegate : com.unatxe.mvvmi.MVVMIDelegate
 
 
-    open fun onDataReceive(liveData: MVVMILiveData<ModelData>) {
+    open fun onDataReceive(liveData: com.unatxe.mvvmi.MVVMILiveData<ModelData>) {
         when(liveData){
-            is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
-            is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
-            is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
+            is com.unatxe.mvvmi.MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
+            is com.unatxe.mvvmi.MVVMILiveData.TypeData -> onModelReceived(liveData.data)
+            is com.unatxe.mvvmi.MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
         }
     }
 
@@ -69,17 +69,17 @@ abstract class MVVMIActivity<ViewModel : MVVMIViewModel<ModelData>,
 
     abstract fun onModelReceived(data: ModelData)
 
-    abstract fun onEventModelReceived(data: ModelFromViewInterface)
+    abstract fun onEventModelReceived(data: com.unatxe.mvvmi.ModelFromViewInterface)
 
 }
 
-abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
+abstract class MVVMIFragment<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
         ModelData>() : Fragment(){
 
     @LayoutRes abstract fun layoutId(): Int
 
     open val viewModel by lazy {
-        ViewModelProvider.AndroidViewModelFactory(activity!!.application).create(getViewModelClass().java)
+        ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(getViewModelClass().java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,14 +114,14 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
 
 
 
-    abstract val viewDelegate : MVVMIDelegate
+    abstract val viewDelegate : com.unatxe.mvvmi.MVVMIDelegate
 
 
-    open fun onDataReceive(liveData: MVVMILiveData<ModelData>) {
+    open fun onDataReceive(liveData: com.unatxe.mvvmi.MVVMILiveData<ModelData>) {
         when(liveData){
-            is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
-            is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
-            is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
+            is com.unatxe.mvvmi.MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
+            is com.unatxe.mvvmi.MVVMILiveData.TypeData -> onModelReceived(liveData.data)
+            is com.unatxe.mvvmi.MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
         }
     }
 
@@ -130,8 +130,6 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
     abstract fun setupViews()
 
     abstract fun onModelReceived(data: ModelData)
-
-    abstract fun onEventModelReceived(data: ModelFromViewInterface)
 
 }
 
@@ -146,11 +144,11 @@ interface MVVMIDelegate {
 
 sealed class MVVMILiveData<Data>{
 
-    class Error<Data>(val failure : Failure) : MVVMILiveData<Data>()
+    class Error<Data>(val failure : Failure) : com.unatxe.mvvmi.MVVMILiveData<Data>()
 
-    class Loading<Data>(val loading : Boolean) : MVVMILiveData<Data>()
+    class Loading<Data>(val loading : Boolean) : com.unatxe.mvvmi.MVVMILiveData<Data>()
 
-    data class TypeData<Data>(val data : Data) : MVVMILiveData<Data>()
+    data class TypeData<Data>(val data : Data) : com.unatxe.mvvmi.MVVMILiveData<Data>()
 
 }
 

@@ -1,15 +1,13 @@
 package com.uratxe.movetilt
 
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.uratxe.mvit.MVVMIDelegate
+import com.unatxe.mvvmi.MVVMIDelegate
 import com.uratxe.mvit.exception.Failure
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 
 
@@ -29,7 +27,7 @@ inline fun ViewModel.launch(crossinline action: suspend CoroutineScope.() -> Uni
     }
 }
 
-class DerivedViewDelegate(b: MVVMIDelegate) : MVVMIDelegate by b{
+class DerivedViewDelegate(b: com.unatxe.mvvmi.MVVMIDelegate) : com.unatxe.mvvmi.MVVMIDelegate by b{
     override fun processError(error: Failure) {
         //Toast.makeText(context,error.message,Toast.LENGTH_LONG ).show()
     }
