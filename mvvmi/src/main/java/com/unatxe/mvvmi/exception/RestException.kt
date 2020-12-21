@@ -1,4 +1,4 @@
-package com.baturamobile.utils.data.exception.exception
+package com.unatxe.mvvmi.exception
 
 /**
  * Created by vssnake on 23/01/2018.

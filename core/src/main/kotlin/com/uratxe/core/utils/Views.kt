@@ -6,7 +6,7 @@ import android.util.Patterns
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import com.baturamobile.utils.validators.IDCardValidator
+import com.uratxe.core.utils.validators.IDCardValidator
 
 /**
  * Created by vssnake on 05/01/2018.

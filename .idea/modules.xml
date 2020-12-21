@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.MVVMI.iml" filepath="$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.MVVMI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.mvvmi.iml" filepath="$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.mvvmi.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.MoveTilt.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.MoveTilt.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.MoveTilt.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/android.MoveTilt.buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android.MoveTilt.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android.MoveTilt.core.iml" />

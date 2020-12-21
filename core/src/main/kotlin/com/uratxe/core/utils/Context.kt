@@ -38,7 +38,7 @@ fun Context.startNfcSettingsActivity() {
 fun Context.isWifiConnected(): Boolean{
     val connManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-    return wifi.isConnected
+    return wifi!!.isConnected
 }
 
 fun Context.isInternetAvaiable() : Boolean{

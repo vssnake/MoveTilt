@@ -1,4 +1,4 @@
-package com.baturamobile.utils.serializer
+package com.uratxe.core.utils.serializer
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

@@ -12,9 +12,9 @@ fun String.getAccessibilityText(): String {
     }
 }
 
+
 fun TextView.setTextWithContentDescription(string : String){
 
     this.text = string
     this.contentDescription = string.getAccessibilityText()
-
 }
