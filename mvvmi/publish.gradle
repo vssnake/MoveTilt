@@ -1,15 +1,15 @@
 apply plugin: 'com.jfrog.bintray'
 
-group 'com.batura'
-version '1.1.1'
+group 'com.unatxe'
+version '1.1.2'
 
 project.ext {
-    mavGitUrl = 'https://github.com/BaturaMobile/ZeroBaturaLibrary'
-    mavProjectName = 'Zero_Batura_Library'
+    mavGitUrl = 'https://github.com/vssnake/MoveTilt'
+    mavProjectName = 'mvvi'
     mavLibraryLicenses = ["Apache-2.0":'http://www.apache.org/licenses/LICENSE-2.0.txt']
-    mavLibraryDescription = "Desing System Batura Library"
+    mavLibraryDescription = "Model View View Model Intent"
     mavPublishToMavenLocal = true
-    mavSiteUrl = 'https://github.com/BaturaMobile/ZeroBaturaLibrary'
+    mavSiteUrl = 'https://github.com/vssnake/MoveTilt'
 }
 
 def properties = new Properties()
@@ -24,6 +24,7 @@ bintray {
     pkg {
         repo = "Android"
         name = 'MVVMI'
+        group = this.group
         userOrg = "baturamobilesolutions"
         description = "MVVMI library"
         publicDownloadNumbers = true

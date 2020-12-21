@@ -4,13 +4,12 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     id("kotlin-android-extensions")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 
 android {
     compileSdkVersion(29)
-    buildToolsVersion = "29.0.1"
+    buildToolsVersion = "29.0.2"
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(29)
@@ -83,8 +82,9 @@ dependencies {
     implementation ("androidx.ui:ui-layout:0.1.0-dev04")
     implementation ("androidx.ui:ui-material:0.1.0-dev04")
 
-    implementation ("com.squareup.retrofit2:retrofit:2.7.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.7.1")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.0.0")
 
     implementation ("joda-time:joda-time:2.10.4")

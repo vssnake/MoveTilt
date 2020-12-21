@@ -1,3 +1,3 @@
 include(":core")
 include (":app")
-include(":MVVMI")
+include(":mvvmi")
