@@ -3,10 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/movetilt.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/movetilt.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movetilt.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/movetilt.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/movetilt.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/movetilt.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvp/movetilt.mvp.iml" filepath="$PROJECT_DIR$/.idea/modules/mvp/movetilt.mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.mvvmi.iml" filepath="$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.mvvmi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.MoveTilt.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.MoveTilt.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.MoveTilt.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/android.MoveTilt.buildSrc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android.MoveTilt.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android.MoveTilt.core.iml" />
     </modules>
   </component>
 </project>

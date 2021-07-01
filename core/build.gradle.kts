@@ -1,9 +1,13 @@
 
+
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
     id("kotlin-android-extensions")
+    id("maven-publish")
+    id("xyz.tynn.android.sources") version("0.1.2")
+    id ("org.jetbrains.dokka")
 }
 
 
@@ -91,8 +95,22 @@ dependencies {
 
     implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
     implementation("com.google.android.gms:play-services-maps:17.0.0")
+}
 
+// Because the components are created only during the afterEvaluate phase, you must
+// configure your publications using the afterEvaluate() lifecycle method.
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            create<MavenPublication>("release"){
+                groupId = "com.unatxe.core"
+                artifactId = "final"
+                version = "0.1"
 
-
+                from(components["release"])
+            }
+        }
+    }
 
 }
