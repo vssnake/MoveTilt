@@ -2,6 +2,8 @@ import com.uratxe.movetilt.Android
 import com.uratxe.movetilt.AndroidX
 import com.uratxe.movetilt.Firebase
 import com.uratxe.movetilt.Libs
+import java.util.Properties
+import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
@@ -29,10 +31,20 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = File("uratxeSign.jks")
-            storePassword = "topotaRaven69"
-            keyAlias = "miRatu"
-            keyPassword = "Iri_okupa"
+            val keystorePropertiesFile = file("release-signing.properties")
+
+            if (!keystorePropertiesFile.exists()) {
+                logger.warn("Release builds may not work: signing config not found.")
+                return@create
+            }
+
+            val keystoreProperties = Properties()
+            keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
         }
     }
 
