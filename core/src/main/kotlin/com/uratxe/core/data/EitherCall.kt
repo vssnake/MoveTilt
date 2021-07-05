@@ -1,6 +1,6 @@
-package com.uratxe.core.utils.data
+package com.uratxe.core.data
 
-import com.uratxe.core.mvit.Either
+import com.uratxe.core.utils.Either
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call

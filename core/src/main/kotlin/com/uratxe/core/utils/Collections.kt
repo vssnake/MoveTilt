@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 
 fun <T> Collection<T>.deepEqualTo(other: Collection<T>): Boolean {

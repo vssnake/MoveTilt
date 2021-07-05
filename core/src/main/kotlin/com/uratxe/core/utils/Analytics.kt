@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import android.app.Activity
 import com.google.firebase.analytics.FirebaseAnalytics

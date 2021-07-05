@@ -1,9 +1,9 @@
 package com.unatxe.mvp
 
+import android.app.TaskStackBuilder
 import android.os.Build
-import android.support.v4.app.NavUtils
-import android.support.v4.app.TaskStackBuilder
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 
 /**
  * Created by vssnake on 6/12/2017.

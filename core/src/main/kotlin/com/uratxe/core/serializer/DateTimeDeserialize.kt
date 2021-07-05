@@ -1,4 +1,4 @@
-package com.uratxe.core.utils.serializer
+package com.uratxe.core.serializer
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

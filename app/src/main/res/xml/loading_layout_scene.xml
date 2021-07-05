@@ -7,6 +7,7 @@
         motion:constraintSetEnd="@+id/ml_end"
         motion:duration="1000">
 
+        <OnSwipe />
     </Transition>
 
     <ConstraintSet android:id="@+id/ml_start">

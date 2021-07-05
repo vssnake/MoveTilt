@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import kotlin.math.cos
 import kotlin.math.pow

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.uratxe.AnimeListQuery
 import com.uratxe.movetilt.PaginationScrollListener
 import com.uratxe.movetilt.R
-import kotlinx.android.synthetic.main.activity_anime_list.*
 import kotlinx.android.synthetic.main.viewholder_anime_list.view.*
 
 class AnimeListAdapter(val animeListViewModel: AnimeListViewModel)
@@ -45,7 +44,7 @@ class AnimeListAdapter(val animeListViewModel: AnimeListViewModel)
             override fun loadMoreItems() {
                 isLoading = true
                 //you have to call loadmore items to get more data
-                animeListViewModel.onEventFromView(OnMorePagesLoad)
+                animeListViewModel.lauchEventFromView(OnMorePagesLoad)
             }
         })
     }

@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.annotation.CallSuper
 import androidx.core.app.TaskStackBuilder
-import com.baturamobile.utils.LogStaticV2
-import org.joda.time.format.DateTimeFormat
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*

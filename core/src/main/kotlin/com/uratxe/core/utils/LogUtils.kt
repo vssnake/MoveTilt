@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 /**
  * Created by vssnake on 21/02/2018.

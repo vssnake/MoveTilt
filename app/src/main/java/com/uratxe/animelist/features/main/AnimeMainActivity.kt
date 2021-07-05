@@ -1,12 +1,9 @@
 package com.uratxe.animelist.features.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.uratxe.animelist.NavigatorHelper
 import com.uratxe.animelist.data.AuthModule
 import com.uratxe.movetilt.R

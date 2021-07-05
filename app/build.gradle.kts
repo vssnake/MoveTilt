@@ -69,14 +69,15 @@ android {
     }
 }
 
-
 dependencies {
     //implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Libs.kotlinVersion}")
     implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
     implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
     implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
+
     implementation(project(mapOf("path" to ":core")))
+    implementation(project(mapOf("path" to ":mvvmi")))
 
     testImplementation("junit:junit:${Libs.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
@@ -86,16 +87,11 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.lifecycle_version}")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:${Libs.lifecycle_version}")
-
-
     implementation("androidx.lifecycle:lifecycle-common-java8:${Libs.lifecycle_version}")
-
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Libs.lifecycle_version}")
 
-
-    implementation("org.koin:koin-android:${Libs.koin}")
-    implementation("org.koin:koin-androidx-scope:${Libs.koin}")
-    implementation("org.koin:koin-androidx-viewmodel:${Libs.koin}")
+    implementation("io.insert-koin:koin-core:${Libs.koin}")
+    implementation("io.insert-koin:koin-android:${Libs.koin}")
 
     implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
 
@@ -116,7 +112,4 @@ dependencies {
     implementation ("androidx.ui:ui-tooling:0.1.0-dev02")
     implementation ("androidx.ui:ui-layout:0.1.0-dev02")
     implementation ("androidx.ui:ui-material:0.1.0-dev02")
-
-
-
 }

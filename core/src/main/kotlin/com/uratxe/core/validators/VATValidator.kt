@@ -1,4 +1,4 @@
-package com.uratxe.core.utils.validators
+package com.uratxe.core.validators
 
 /**
  * Created by vssnake on 27/10/2017.

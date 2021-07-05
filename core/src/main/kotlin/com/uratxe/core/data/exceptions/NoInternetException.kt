@@ -1,4 +1,4 @@
-package com.unatxe.mvvmi.exception
+package com.uratxe.core.data.exceptions
 
 /**
  * Created by vssnake on 22/12/2017.

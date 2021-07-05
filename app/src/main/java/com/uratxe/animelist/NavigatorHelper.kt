@@ -1,12 +1,7 @@
 package com.uratxe.animelist
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.view.View
-import androidx.navigation.*
-import com.uratxe.animelist.features.animelist.AnimeListFragment
-import com.uratxe.movetilt.R
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 
 object NavigatorHelper {
 

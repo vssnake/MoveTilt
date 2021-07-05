@@ -1,4 +1,4 @@
-package com.uratxe.core.utils.library;
+package com.uratxe.core.library;
 
 import android.content.Context;
 import android.graphics.PointF;

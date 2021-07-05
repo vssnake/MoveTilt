@@ -12,16 +12,14 @@ plugins {
 
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion = "29.0.2"
+    compileSdkVersion(30)
+    buildToolsVersion = "30.0.3"
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(29)
+        targetSdkVersion(30)
         versionCode = 2
         versionName = "1.0"
     }
-
-
 
     buildTypes {
         getByName("release") {
@@ -29,7 +27,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -60,17 +57,8 @@ dependencies {
     implementation("com.google.firebase:firebase-core:17.4.3")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    // For Kotlin use lifecycle-viewmodel-ktx
-
     implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
-
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-
-    implementation("org.koin:koin-android-viewmodel:2.1.6")
-    implementation("org.koin:koin-android-scope:2.1.6")
-
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
@@ -104,8 +92,8 @@ afterEvaluate {
         publications {
             // Creates a Maven publication called "release".
             create<MavenPublication>("release"){
-                groupId = "com.unatxe.core"
-                artifactId = "final"
+                groupId = "com.unatxe"
+                artifactId = "core"
                 version = "0.1"
 
                 from(components["release"])

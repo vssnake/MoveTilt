@@ -1,12 +1,9 @@
 package com.baturamobile.utils
 
 import android.util.Log
-import com.baturamobile.utils.data.exception.exception.RestException
 import com.google.gson.Gson
-import com.uratxe.core.utils.CallbackCustom
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.uratxe.core.data.exceptions.RestException
+import com.uratxe.core.utils.LogStaticV2
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.Buffer
@@ -23,7 +20,7 @@ import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.*
 import javax.net.ssl.HostnameVerifier
-import javax.net.ssl.SSLContext.*
+import javax.net.ssl.SSLContext.getInstance
 import javax.net.ssl.TrustManager
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager

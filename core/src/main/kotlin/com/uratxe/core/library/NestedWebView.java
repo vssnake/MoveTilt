@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uratxe.core.utils.library;
+package com.uratxe.core.library;
 
 import android.content.Context;
 import android.util.AttributeSet;

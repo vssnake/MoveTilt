@@ -1,25 +1,21 @@
 package com.unatxe.mvp
 
 import android.app.Activity
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.NavUtils
-import android.support.v4.app.TaskStackBuilder
-import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import MvpUtils
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import java.lang.ref.WeakReference
 
 /**
@@ -30,10 +26,10 @@ abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
 
     var dataBundle : Bundle? = null
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         dataBundle?.let {
-            outState?.putAll(dataBundle)
+            outState.putAll(dataBundle)
         }
     }
 
@@ -95,8 +91,8 @@ abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
         getViewDelegate()?.onSuccess()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return if (item != null && item.itemId == android.R.id.home) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == android.R.id.home) {
             checkFinishMethod()
             true
         } else {
@@ -115,31 +111,6 @@ abstract class BaseActivityV3 : AppCompatActivity(), BaseContractV3{
 
     override fun onBackPressed() {
         checkFinishMethod()
-    }
-
-    private fun checkFinishMethod() {
-        val upIntent = NavUtils.getParentActivityIntent(this)
-        if (upIntent != null) {
-            if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                // This activity is NOT part of this app's task, so create a new task
-                // when navigating up, with a synthesized back stack.
-                TaskStackBuilder.create(this)
-                        // Add all of this activity's parents to the back stack
-                        .addNextIntentWithParentStack(upIntent)
-                        // Navigate up to the closest parent
-                        .startActivities()
-            } else {
-                // This activity is part of this app's task, so simply
-                // navigate up to the logical parent activity.
-                NavUtils.navigateUpTo(this, upIntent)
-            }
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                finishAfterTransition()
-            } else {
-                finish()
-            }
-        }
     }
 
     override fun getArguments(): Bundle? {
@@ -252,8 +223,7 @@ abstract class MVPFragmentV3<out T : BasePresenterV3<out BaseContractV3>> : Base
 }
 
 
-abstract class MVPViewGroup< T: MVPViewgroupBasePresenter<out BaseViewGroupContractView>> @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+abstract class MVPViewGroup< T: MVPViewgroupBasePresenter<out BaseViewGroupContractView>> @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr)
 {
     abstract fun injectDI()
