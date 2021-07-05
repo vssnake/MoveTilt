@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import android.content.Context
 import android.content.res.Resources

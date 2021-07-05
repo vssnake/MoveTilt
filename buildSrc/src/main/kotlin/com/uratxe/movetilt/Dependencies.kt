@@ -1,7 +1,7 @@
 package com.uratxe.movetilt
 
 object Android{
-    const val buildToolsVersion = "29.0.1"
+    const val buildToolsVersion = "30.0.3"
     const val versionCode = 2
     const val versionName  = "1.0"
     const val minSdk = 21
@@ -20,7 +20,7 @@ object  Libs{
 
     const val appAuth = "0.7.1"
 
-    const val koin = "2.1.6"
+    const val koin = "3.1.1"
 
     const val jwtdecode = "1.3.0"
 

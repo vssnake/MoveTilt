@@ -4,66 +4,66 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.SavedStateHandle
+import com.unatxe.mvvmi.MVVMIActivity
+import com.unatxe.mvvmi.MVVMIDelegate
+import com.unatxe.mvvmi.MVVMIFragment
+import com.unatxe.mvvmi.MVVMIViewModel
 import com.uratxe.animelist.data.AuthModule
 import com.uratxe.animelist.features.animelist.AnimeListViewModel
 import com.uratxe.animelist.features.animelist.data.AnimeApiDataSource
 import com.uratxe.animelist.features.animelist.data.AnimeDBDatasource
 import com.uratxe.animelist.features.animelist.data.AnimeDataSource
 import com.uratxe.animelist.features.animelist.data.AnimeRepository
-import com.uratxe.mvit.*
-import com.uratxe.mvit.exception.Failure
+import com.uratxe.core.data.exceptions.Failure
+import com.uratxe.core.utils.PreferencesManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.ext.android.getStateViewModel
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import org.koin.core.context.startKoin
-import org.koin.core.parameter.DefinitionParameters
+import org.koin.core.parameter.ParametersHolder
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
-abstract class KoinProyectActivity<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
+abstract class KoinProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
         ModelData> : ProyectActivity<ViewModel,ModelData>(){
 
     override val viewModel: ViewModel
         get()  {
-            return getStateViewModel(getViewModelClass())
+            return getStateViewModel(clazz = getViewModelClass())
         }
-
-
 }
-abstract class ProyectActivity<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
-        ModelData> : com.unatxe.mvvmi.MVVMIActivity<ViewModel, ModelData>(){
+abstract class ProyectActivity<ViewModel : MVVMIViewModel<ModelData>,
+        ModelData> : MVVMIActivity<ViewModel, ModelData>(){
 
-    override val viewDelegate: com.unatxe.mvvmi.MVVMIDelegate = MainProyectViewDelegate()
+    override val viewDelegate: MVVMIDelegate = MainProyectViewDelegate()
 
 }
 
-abstract class KoinProyectFragment<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
+abstract class KoinProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
         ModelData> : ProyectFragment<ViewModel,ModelData>(){
 
-    override val viewModel: ViewModel by lazy {
-        getStateViewModel(getViewModelClass())
-    }
-
+    override val viewModel: ViewModel by stateViewModel(clazz = getViewModelClass())
 }
-abstract class ProyectFragment<ViewModel : com.unatxe.mvvmi.MVVMIViewModel<ModelData>,
-        ModelData> : com.unatxe.mvvmi.MVVMIFragment<ViewModel, ModelData>(){
 
-    override val viewDelegate: com.unatxe.mvvmi.MVVMIDelegate = MainProyectViewDelegate()
+abstract class ProyectFragment<ViewModel : MVVMIViewModel<ModelData>,
+        ModelData> : MVVMIFragment<ViewModel, ModelData>(){
 
+    override val viewDelegate: MVVMIDelegate = MainProyectViewDelegate()
 }
 
 
-class MainProyectViewDelegate  : com.unatxe.mvvmi.MVVMIDelegate {
+class MainProyectViewDelegate  : MVVMIDelegate {
     override lateinit var context: Context
 
-
-    override fun initViewDelegate(view: ViewGroup) {
+    override fun initViewDelegate(view: ViewGroup, fragmentDelegate: FragmentManager) {
         context = view.context
     }
-
 
     override fun processError(error: Failure) {
         //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -72,21 +72,19 @@ class MainProyectViewDelegate  : com.unatxe.mvvmi.MVVMIDelegate {
     override fun showLoading(boolean: Boolean) {
         // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 }
 
 
 class ProyectApp : Application(){
-
     override fun onCreate() {
         super.onCreate()
         initKoin()
 
-        com.unatxe.mvvmi.PreferencesManager.init(this)
+        PreferencesManager.init(this)
     }
 
     private fun initKoin(){
-        startKoin{
+        startKoin {
             androidLogger()
             androidContext(this@ProyectApp)
             modules(listOf(appModule,animeModule))
@@ -111,6 +109,6 @@ class ProyectApp : Application(){
 
 }
 
-fun parametersActivity(activity: Activity): DefinitionParameters {
+fun parametersActivity(activity: Activity): ParametersHolder {
     return parametersOf(activity)
 }

@@ -1,7 +1,7 @@
 package com.uratxe.animelist.data
 
 import com.auth0.android.jwt.JWT
-import com.unatxe.mvvmi.PreferencesManager
+import com.uratxe.core.utils.PreferencesManager
 
 class AuthModule {
 
@@ -11,11 +11,11 @@ class AuthModule {
     fun setAccessToken(accessToken : String){
         this.accessToken = accessToken;
         jwt = JWT(accessToken)
-        com.unatxe.mvvmi.PreferencesManager.setString("ACCESS_TOKEN",accessToken)
+        PreferencesManager.setString("ACCESS_TOKEN",accessToken)
     }
 
     fun isAccessTokenValid(): Boolean {
-        val accessToken = com.unatxe.mvvmi.PreferencesManager.getString("ACCESS_TOKEN",null)
+        val accessToken = PreferencesManager.getString("ACCESS_TOKEN",null)
         if (!accessToken.isNullOrBlank()){
             setAccessToken(accessToken)
         }

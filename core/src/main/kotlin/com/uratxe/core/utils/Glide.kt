@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy

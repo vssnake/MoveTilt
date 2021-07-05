@@ -1,6 +1,6 @@
-package com.uratxe.core.utils.data
+package com.uratxe.core.data
 
-import com.uratxe.core.mvit.Either
+import com.uratxe.core.utils.Either
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

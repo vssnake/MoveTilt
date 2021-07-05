@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import android.graphics.Typeface
 import android.text.InputType
@@ -6,7 +6,7 @@ import android.util.Patterns
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import com.uratxe.core.utils.validators.IDCardValidator
+import com.uratxe.core.validators.IDCardValidator
 
 /**
  * Created by vssnake on 05/01/2018.

@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import android.text.InputFilter
 import android.text.SpannableStringBuilder

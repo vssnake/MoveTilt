@@ -2,10 +2,9 @@ package com.uratxe.animelist.features.animelist
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uratxe.AnimeListQuery
-import com.uratxe.movetilt.*
+import com.uratxe.movetilt.KoinProyectFragment
+import com.uratxe.movetilt.R
 import kotlinx.android.synthetic.main.activity_anime_list.*
-import kotlinx.android.synthetic.main.loading_layout.*
-
 import kotlin.reflect.KClass
 
 class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListQuery.Data>() {
@@ -21,16 +20,10 @@ class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListQuery
         aal_rv.layoutManager = LinearLayoutManager(context)
         aal_rv.adapter = adapter
 
-
-        motionLayout.loop(true)
-
-
+        //motionLayout.loop(true)
     }
 
     override fun onModelReceived(data: AnimeListQuery.Data) {
         adapter.loadData(data)
     }
-
-
-
 }

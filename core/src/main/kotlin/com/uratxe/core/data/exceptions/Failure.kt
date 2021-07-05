@@ -1,3 +1,5 @@
+package com.uratxe.core.data.exceptions
+
 /**
  * Copyright (C) 2018 Fernando Cejas Open Source Project
  *
@@ -13,8 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.uratxe.mvit.exception;
-
 /**
  * Base Class for handling errors/failures/exceptions.
  * Every feature specific failure should extend [FeatureFailure] class.

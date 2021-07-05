@@ -1,4 +1,4 @@
-package com.unatxe.mvvmi
+package com.uratxe.core.utils
 
 import android.content.Context
 import android.content.SharedPreferences

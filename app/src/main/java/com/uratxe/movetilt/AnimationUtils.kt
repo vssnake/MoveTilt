@@ -1,8 +1,6 @@
 package com.uratxe.movetilt
 
 import androidx.constraintlayout.motion.widget.MotionLayout
-import kotlinx.android.synthetic.main.loading_layout.*
-
 
 
 fun MotionLayout.loop(enable : Boolean){

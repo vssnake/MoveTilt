@@ -1,4 +1,4 @@
-package com.uratxe.core.utils.data
+package com.uratxe.core.data
 
 import retrofit2.Call
 import retrofit2.Response

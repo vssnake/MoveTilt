@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unatxe.mvvmi.MVVMIDelegate
-import com.uratxe.mvit.exception.Failure
+import com.uratxe.core.data.exceptions.Failure
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -27,7 +27,7 @@ inline fun ViewModel.launch(crossinline action: suspend CoroutineScope.() -> Uni
     }
 }
 
-class DerivedViewDelegate(b: com.unatxe.mvvmi.MVVMIDelegate) : com.unatxe.mvvmi.MVVMIDelegate by b{
+class DerivedViewDelegate(b: MVVMIDelegate) : MVVMIDelegate by b{
     override fun processError(error: Failure) {
         //Toast.makeText(context,error.message,Toast.LENGTH_LONG ).show()
     }
@@ -35,8 +35,6 @@ class DerivedViewDelegate(b: com.unatxe.mvvmi.MVVMIDelegate) : com.unatxe.mvvmi.
     override fun showLoading(boolean: Boolean) {
        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-
 }
 
 

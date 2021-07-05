@@ -1,4 +1,4 @@
-package com.baturamobile.utils
+package com.uratxe.core.utils
 
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone

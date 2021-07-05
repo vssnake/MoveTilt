@@ -4,7 +4,7 @@ import com.unatxe.mvvmi.ModelFromViewInterface
 
 data class AnimeListData(val email: String,val nickName : String)
 
-object OnMorePagesLoad : com.unatxe.mvvmi.ModelFromViewInterface
+object OnMorePagesLoad : ModelFromViewInterface
 
 sealed class AnimeListViewEvent  {
     data class ProcessErrorEvent(val typeError : String) : AnimeListViewEvent()
