@@ -85,6 +85,10 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:17.0.0")
 }
 
+//Definition of params used by publishToMavenLocal when code is compiled from JitPack
+group = "com.baturamobile"
+version = "0.1"
+
 // Because the components are created only during the afterEvaluate phase, you must
 // configure your publications using the afterEvaluate() lifecycle method.
 afterEvaluate {
