@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoveTilt.iml" filepath="$PROJECT_DIR$/.idea/modules/MoveTilt.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/movetilt.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/movetilt.buildSrc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/movetilt.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/movetilt.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/movetilt.commons.iml" filepath="$PROJECT_DIR$/.idea/modules/core/movetilt.commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvp/movetilt.mvp.iml" filepath="$PROJECT_DIR$/.idea/modules/mvp/movetilt.mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.mvvmi.iml" filepath="$PROJECT_DIR$/.idea/modules/MVVMI/MoveTilt.mvvmi.iml" />
     </modules>

@@ -1,4 +1,4 @@
 //include (":app")
-include(":core")
+include(":commons")
 include(":mvvmi")
 include(":mvp")

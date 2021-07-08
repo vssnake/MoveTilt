@@ -16,13 +16,11 @@ import com.uratxe.animelist.features.animelist.data.AnimeApiDataSource
 import com.uratxe.animelist.features.animelist.data.AnimeDBDatasource
 import com.uratxe.animelist.features.animelist.data.AnimeDataSource
 import com.uratxe.animelist.features.animelist.data.AnimeRepository
-import com.uratxe.core.data.exceptions.Failure
-import com.uratxe.core.utils.PreferencesManager
+import com.unatxe.commons.data.exceptions.Failure
+import com.unatxe.commons.utils.PreferencesManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.androidx.viewmodel.ext.android.getStateViewModel
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.parameter.ParametersHolder
 import org.koin.core.parameter.parametersOf

@@ -3,8 +3,8 @@ package com.uratxe.animelist.data
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Error
 import com.apollographql.apollo.api.Response
-import com.uratxe.core.data.exceptions.Failure
-import com.uratxe.core.utils.Either
+import com.unatxe.commons.data.exceptions.Failure
+import com.unatxe.commons.utils.Either
 import kotlinx.coroutines.flow.FlowCollector
 import okhttp3.OkHttpClient
 

@@ -87,8 +87,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
     implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
     implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
+    implementation(project(mapOf("path" to ":commons")))
 
-    implementation(project(mapOf("path" to ":core")))
     implementation(project(mapOf("path" to ":mvvmi")))
 
     testImplementation("junit:junit:${Libs.junit}")

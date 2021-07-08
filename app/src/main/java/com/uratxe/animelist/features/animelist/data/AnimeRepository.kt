@@ -1,8 +1,8 @@
 package com.uratxe.animelist.features.animelist.data
 
 import com.uratxe.AnimeListQuery
-import com.uratxe.core.data.exceptions.Failure
-import com.uratxe.core.utils.Either
+import com.unatxe.commons.data.exceptions.Failure
+import com.unatxe.commons.utils.Either
 import kotlinx.coroutines.flow.Flow
 
 

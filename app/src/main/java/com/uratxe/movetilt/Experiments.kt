@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unatxe.mvvmi.MVVMIDelegate
-import com.uratxe.core.data.exceptions.Failure
+import com.unatxe.commons.data.exceptions.Failure
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect

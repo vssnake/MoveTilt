@@ -1,7 +1,7 @@
 package com.uratxe.animelist.data
 
 import com.auth0.android.jwt.JWT
-import com.uratxe.core.utils.PreferencesManager
+import com.unatxe.commons.utils.PreferencesManager
 
 class AuthModule {
 
