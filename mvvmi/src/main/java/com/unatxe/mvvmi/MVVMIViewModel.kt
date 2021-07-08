@@ -3,7 +3,7 @@ package com.unatxe.mvvmi
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.uratxe.core.utils.runUI
+import com.unatxe.commons.utils.runUI
 
 abstract class MVVMIViewModel<ModelData>(application: Application) : AndroidViewModel(application){
 

@@ -3,7 +3,7 @@ package com.unatxe.mvvmi
 import android.content.Context
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import com.uratxe.core.data.exceptions.Failure
+import com.unatxe.commons.data.exceptions.Failure
 
 interface MVVMIDelegate {
 

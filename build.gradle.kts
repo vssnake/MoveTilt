@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.1")
+        classpath("com.android.tools.build:gradle:4.2.2")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10")
         classpath ("com.google.gms:google-services:4.3.4")
         classpath ("com.google.firebase:firebase-appdistribution-gradle:2.0.1")

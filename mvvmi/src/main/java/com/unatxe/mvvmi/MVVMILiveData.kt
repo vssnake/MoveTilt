@@ -1,6 +1,6 @@
 package com.unatxe.mvvmi
 
-import com.uratxe.core.data.exceptions.Failure
+import com.unatxe.commons.data.exceptions.Failure
 
 sealed class MVVMILiveData<Data>{
 

@@ -4,10 +4,10 @@ import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.toFlow
 import com.uratxe.AnimeListQuery
 import com.uratxe.animelist.data.Apollo
-import com.uratxe.animelist.data.Apollo.apolloCallChecker
 import com.uratxe.animelist.data.Apollo.catchApolloError
-import com.uratxe.core.data.exceptions.Failure
-import com.uratxe.core.utils.Either
+import com.unatxe.commons.data.exceptions.Failure
+import com.unatxe.commons.utils.Either
+import com.uratxe.animelist.data.Apollo.apolloCallChecker
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
