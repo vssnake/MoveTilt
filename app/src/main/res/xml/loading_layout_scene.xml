@@ -7,7 +7,6 @@
         motion:constraintSetEnd="@+id/ml_end"
         motion:duration="1000">
 
-        <OnSwipe />
     </Transition>
 
     <ConstraintSet android:id="@+id/ml_start">
@@ -18,7 +17,8 @@
             android:layout_marginStart="8dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent" />
+            motion:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/ml_end">

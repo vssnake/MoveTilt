@@ -1,4 +1,4 @@
-package com.uratxe.movetilt
+package com.uratxe.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -58,7 +58,7 @@ abstract class PaginationScrollListener(val recyclerView: RecyclerView) : Recycl
             if (!isLoading() && !isLastPage()) {
                 if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
                     loadMoreItems()
-                }//                    && totalItemCount >= ClothesFragment.itemsCount
+                }
             }
         }
 

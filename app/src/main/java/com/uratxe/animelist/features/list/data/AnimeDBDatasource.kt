@@ -1,4 +1,4 @@
-package com.uratxe.animelist.features.animelist.data
+package com.uratxe.animelist.features.list.data
 
 import com.uratxe.AnimeListQuery
 import com.unatxe.commons.data.exceptions.Failure

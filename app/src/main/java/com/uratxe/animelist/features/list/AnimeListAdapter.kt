@@ -1,4 +1,4 @@
-package com.uratxe.animelist.features.animelist
+package com.uratxe.animelist.features.list
 
 import android.annotation.SuppressLint
 import android.text.Html
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.uratxe.AnimeListQuery
-import com.uratxe.movetilt.PaginationScrollListener
+import com.uratxe.common.PaginationScrollListener
 import com.uratxe.movetilt.R
 import kotlinx.android.synthetic.main.viewholder_anime_list.view.*
 
@@ -20,14 +20,13 @@ class AnimeListAdapter(val animeListViewModel: AnimeListViewModel)
     var isLoading = false
     var isLastPage = false
 
-
-    internal fun loadData (data : AnimeListQuery.Data){
+    internal fun loadData(data : AnimeListQuery.Data){
         isLoading = false
         isLastPage = !data.page!!.pageInfo!!.hasNextPage!!
-        submitList(data.page.media!!)
+        val results = data.page.media!!.filterNotNull()
+        val newResults = currentList + results
+        submitList(newResults)
     }
-
-
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -44,7 +43,7 @@ class AnimeListAdapter(val animeListViewModel: AnimeListViewModel)
             override fun loadMoreItems() {
                 isLoading = true
                 //you have to call loadmore items to get more data
-                animeListViewModel.lauchEventFromView(OnMorePagesLoad)
+                animeListViewModel.launchEventFromView(OnMorePagesLoad)
             }
         })
     }
@@ -74,14 +73,10 @@ class DefaultItemCallback<T>(private val idSelector: ((T) -> Any?)? = null) : Di
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean = oldItem == newItem
 }
 
-
 class AnimeListViewHolder(view : View) : RecyclerView.ViewHolder(view){
     fun bind(medium: AnimeListQuery.Medium) {
-
         itemView.vhal_title.text = medium.title?.romaji
         itemView.vhal_description.text = Html.fromHtml(medium.description)
         Glide.with(itemView.context).load(medium.coverImage?.large).into(itemView.vhal_image)
-
     }
-
 }

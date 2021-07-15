@@ -1,4 +1,4 @@
-package com.uratxe.movetilt
+package com.uratxe.common
 
 import androidx.constraintlayout.motion.widget.MotionLayout
 

@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/animeListFragment"
-        android:name="com.uratxe.animelist.features.animelist.AnimeListFragment"
+        android:name="com.uratxe.animelist.features.list.AnimeListFragment"
         android:label="activity_anime_list"
         tools:layout="@layout/activity_anime_list" >
     </fragment>

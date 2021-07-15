@@ -37,7 +37,6 @@ class AnimeMainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
         outState.putBoolean(alreadyLoadkey,isAlreadyLoad)
     }
 

@@ -22,6 +22,7 @@ package com.unatxe.commons.data.exceptions
 sealed class Failure {
     object NetworkConnection : Failure()
     class ServerError(val throwable: Throwable) : Failure()
+    class GeneralError(val throwable: Throwable) : Failure()
 
     /** * Extend this class for feature specific failures.*/
     abstract class FeatureFailure: Failure()

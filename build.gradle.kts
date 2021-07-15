@@ -4,6 +4,7 @@ buildscript {
     extra["kotlin_version"] = "1.4.10"
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -25,6 +26,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
+        mavenLocal() //Enabled it if when you publish the android library modules of your project
+        // with "publishMavenLocal" Gradle's task in your laptop. It's an useful tool for test them.
+        // We can find them in $HOME/.m2 folder. Remember set Gradle to "Offline Mode".
+
         maven("https://jcenter.bintray.com")
     }
 }

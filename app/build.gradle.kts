@@ -2,6 +2,7 @@ import com.uratxe.movetilt.Android
 import com.uratxe.movetilt.AndroidX
 import com.uratxe.movetilt.Firebase
 import com.uratxe.movetilt.Libs
+import com.uratxe.movetilt.Batura
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -82,45 +83,49 @@ android {
 }
 
 dependencies {
-    //implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Libs.kotlinVersion}")
     implementation("androidx.appcompat:appcompat:${AndroidX.appCompat}")
     implementation("androidx.core:core-ktx:${AndroidX.coreKtx}")
     implementation("androidx.constraintlayout:constraintlayout:${Libs.constraintLayout}")
-    implementation(project(mapOf("path" to ":commons")))
-
-    implementation(project(mapOf("path" to ":mvvmi")))
-
-    testImplementation("junit:junit:${Libs.junit}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.espresso}")
-
-    implementation("com.google.firebase:firebase-core:${Firebase.core}")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Libs.lifecycle_version}")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:${Libs.lifecycle_version}")
     implementation("androidx.lifecycle:lifecycle-common-java8:${Libs.lifecycle_version}")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Libs.lifecycle_version}")
 
-    implementation("io.insert-koin:koin-core:${Libs.koin}")
-    implementation("io.insert-koin:koin-android:${Libs.koin}")
-
-    implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
-
-    implementation("com.apollographql.apollo:apollo-runtime:${Libs.apollo}")
-    implementation("com.apollographql.apollo:apollo-coroutines-support:${Libs.apollo}")
-
     implementation("androidx.navigation:navigation-fragment-ktx:${AndroidX.navigation}")
     implementation("androidx.navigation:navigation-ui-ktx:${AndroidX.navigation}")
 
     implementation("com.google.android.material:material:${Libs.material}")
 
+    compileOnly("org.jetbrains:annotations:13.0")
+    //Testing
+    testImplementation("junit:junit:${Libs.junit}")
+    androidTestImplementation("androidx.test.ext:junit:${Libs.androidJunit}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.espresso}")
+
+    //Android Library Modules
+    implementation(project(mapOf("path" to ":mvvmi"))) //Project android library module
+    //implementation("com.baturamobile.mvvmi:0.1") //Local library with publishMavenLocal()
+    //implementation("com.github.BaturaMobile.android-basics:commons:${Batura.mvvmi}") //Jitpack library
+
+    //Firebase
+    implementation("com.google.firebase:firebase-core:${Firebase.core}")
+    //Koin
+    implementation("io.insert-koin:koin-core:${Libs.koin}")
+    implementation("io.insert-koin:koin-android:${Libs.koin}")
+    //GraphQL
+    implementation("com.apollographql.apollo:apollo-runtime:${Libs.apollo}")
+    implementation("com.apollographql.apollo:apollo-coroutines-support:${Libs.apollo}")
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:${Libs.retrofit}")
+    implementation("com.squareup.retrofit2:converter-moshi:${Libs.retrofit}")
+    //JWT
+    implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
+    //Glide
     implementation( "com.github.bumptech.glide:glide:${Libs.glide}")
     annotationProcessor("com.github.bumptech.glide:compiler:${Libs.glide}")
-
-    compileOnly("org.jetbrains:annotations:13.0")
-
-
+    //Compose
     implementation ("androidx.ui:ui-tooling:0.1.0-dev02")
     implementation ("androidx.ui:ui-layout:0.1.0-dev02")
     implementation ("androidx.ui:ui-material:0.1.0-dev02")

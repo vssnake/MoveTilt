@@ -10,20 +10,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlin.reflect.KClass
 
-abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
-        ModelData>() : Fragment(){
+abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>, ModelData>() : Fragment()
+        where ModelData: MVVMIData {
 
     @LayoutRes
     abstract fun layoutId(): Int
 
     open val viewModel by lazy {
         ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(getViewModelClass().java)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
@@ -41,30 +35,17 @@ abstract class MVVMIFragment<ViewModel : MVVMIViewModel<ModelData>,
 
         setupViews()
 
-        observe(viewModel.liveData, sendLiveData)
+        onModelInitialized(viewModel.viewData)
 
         viewModel.onViewInitialized()
     }
 
-    private val sendLiveData = Observer<MVVMILiveData<ModelData>> {
-        onDataReceive(it)
-    }
-
     abstract val viewDelegate : MVVMIDelegate
-
-
-    open fun onDataReceive(liveData: MVVMILiveData<ModelData>) {
-        when(liveData){
-            is MVVMILiveData.Error -> viewDelegate.processError(liveData.failure)
-            is MVVMILiveData.TypeData -> onModelReceived(liveData.data)
-            is MVVMILiveData.Loading -> viewDelegate.showLoading(liveData.loading)
-        }
-    }
 
     abstract fun getViewModelClass() : KClass<ViewModel>
 
     abstract fun setupViews()
 
-    abstract fun onModelReceived(data: ModelData)
+    abstract fun onModelInitialized(data: ModelData)
 
 }

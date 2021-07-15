@@ -1,4 +1,4 @@
-package com.uratxe.animelist.features.animelist.data
+package com.uratxe.animelist.features.list.data
 
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.toFlow
@@ -14,7 +14,8 @@ import kotlinx.coroutines.flow.map
 
 class AnimeApiDataSource : AnimeDataSource {
     override fun getAnimes(page: Int): Flow<Either<Failure, AnimeListQuery.Data>> {
-        return Apollo.apolloClient.query(AnimeListQuery(id = Input.absent(),
+        return Apollo.apolloClient.query(AnimeListQuery(
+            id = Input.absent(),
             page = Input.optional(page),
             perPage = Input.optional(50),
             search = Input.absent()))

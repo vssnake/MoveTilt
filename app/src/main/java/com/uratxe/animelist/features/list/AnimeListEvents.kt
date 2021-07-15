@@ -1,4 +1,4 @@
-package com.uratxe.animelist.features.animelist
+package com.uratxe.animelist.features.list
 
 import com.unatxe.mvvmi.ModelFromViewInterface
 
