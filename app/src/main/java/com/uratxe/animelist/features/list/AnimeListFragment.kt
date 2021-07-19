@@ -15,11 +15,8 @@ class AnimeListFragment : KoinProyectFragment<AnimeListViewModel, AnimeListViewD
     override fun getViewModelClass(): KClass<AnimeListViewModel> { return AnimeListViewModel::class }
 
     override fun setupViews() {
-
         aal_rv.layoutManager = LinearLayoutManager(context)
         aal_rv.adapter = adapter
-
-        //motionLayout.loop(true)
     }
 
     override fun onModelInitialized(data: AnimeListViewData) {

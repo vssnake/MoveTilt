@@ -36,6 +36,22 @@ fun Response<*>.getHeaderdate() : DateTime {
     }
 }
 
+fun okhttp3.Response.generateLog() : String{
+
+    val responseBodyCopy = peekBody(Long.MAX_VALUE)
+    val result = StringBuilder()
+    return result.append("Headers : ")
+        .append(headers)
+        .append("\n")
+        .append("Method: ")
+        .append(request.method)
+        .append(" ")
+        .append(request.url )
+        .append("\n")
+        .append("Body : ")
+        .append(responseBodyCopy?.string()).toString()
+}
+
 fun Request.generateLog() : String{
     val result = StringBuilder()
     return result.append("Headers : ")

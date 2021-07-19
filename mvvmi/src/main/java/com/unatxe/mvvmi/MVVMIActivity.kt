@@ -1,6 +1,9 @@
 package com.unatxe.mvvmi
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -23,9 +26,15 @@ abstract class MVVMIActivity<VM : MVVMIViewModel<ViewData>, ViewData: MVVMIData>
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
 
-        viewDelegate.initViewDelegate(findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup,
+        bindingView()
+
+        val rootView = (findViewById<ViewGroup>(android.R.id.content).getChildAt(0))
+            .rootView as ViewGroup
+        viewDelegate.initViewDelegate(rootView,
         supportFragmentManager)
 
+        viewModel.viewData.loading.observe(this,onLoadingReceiver)
+        viewModel.viewData.error.observe(this,onErrorReceiver)
         onModelInitialized(viewModel.viewData)
 
         setupViews()

@@ -30,6 +30,17 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions("app")
+
+    productFlavors {
+        create("anime") {
+            dimension("app")
+        }
+        create("pokemon") {
+            dimension("app")
+        }
+    }
+
     signingConfigs {
         create("release") {
             val keystorePropertiesFile = file("release-signing.properties")
@@ -52,6 +63,10 @@ android {
     apollo {
         setGenerateTransformedQueries(true)
         setGenerateKotlinModels(true)
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -105,9 +120,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.espresso}")
 
     //Android Library Modules
-    implementation(project(mapOf("path" to ":mvvmi"))) //Project android library module
-    //implementation("com.baturamobile.mvvmi:0.1") //Local library with publishMavenLocal()
-    //implementation("com.github.BaturaMobile.android-basics:commons:${Batura.mvvmi}") //Jitpack library
+    implementation(project(mapOf("path" to ":mvvmi"))) //Uncomment when you test a project android library module
+    //implementation("com.baturamobile.mvvmi:0.1") //Uncomment when you test local library with publishMavenLocal()
+    //implementation("com.github.BaturaMobile.android-basics:commons:${Batura.mvvmi}") //Uncomment when you use Jitpack's library
 
     //Firebase
     implementation("com.google.firebase:firebase-core:${Firebase.core}")

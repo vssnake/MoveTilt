@@ -7,6 +7,11 @@ import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
+/**
+ * Transform object {@link Call} of Retrofit to Either<ApiError?,Any?>. It's easier use this Object
+ * than having to check each Retrofit response, here you know that if something comes in left side
+ * it's an {@link ApiError} and if comes in right, its a object.
+ */
 class EitherCallAdapterFactory : CallAdapter.Factory() {
 
     override fun get(

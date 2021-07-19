@@ -15,8 +15,6 @@
  */
 package com.unatxe.commons.utils
 
-
-
 /**
  * Represents a value of one of two possible types (a disjoint union).
  * Instances of [Either] are either an instance of [Left] or [Right].
@@ -43,6 +41,13 @@ sealed class Either<out L, out R> {
             is Left -> fnL(a)
             is Right -> fnR(b)
         }
+
+    fun <T>mapRight(fnMapR: (R) -> T): Either<out L, out T> =
+        when(this) {
+            is Left -> this
+            is Right -> Right(fnMapR(b))
+        }
+
 }
 
 // Credits to Alex Hart -> https://proandroiddev.com/kotlins-nothing-type-946de7d464fb

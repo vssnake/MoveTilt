@@ -43,3 +43,11 @@
 -keepclassmembers class com.squareup.moshi.internal.Util {
     private static java.lang.String getKotlinMetadataClassName();
 }
+
+## GLIDE ##
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}

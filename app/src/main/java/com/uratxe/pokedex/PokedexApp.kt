@@ -1,15 +1,13 @@
 package com.uratxe.pokedex
 
 import android.app.Application
+import com.unatxe.commons.data.EitherCallAdapterFactory
 import com.unatxe.commons.utils.PreferencesManager
-import com.uratxe.animelist.features.list.data.AnimeApiDataSource
-import com.uratxe.animelist.features.list.data.AnimeDBDatasource
-import com.uratxe.animelist.features.list.data.AnimeDataSource
-import com.uratxe.animelist.features.list.data.AnimeRepository
+import com.uratxe.common.DataSourceTypes
 import com.uratxe.pokedex.data.*
+import com.uratxe.pokedex.data.services.PokemonService
 import com.uratxe.pokedex.features.list.presentation.PokemonListVM
 import okhttp3.OkHttpClient
-import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -36,27 +34,23 @@ class PokedexApp: Application() {
     }
 
     val appModule = module {
-        single {
-            OkHttpClient.Builder().build()
-        }
+        single { OkHttpClient.Builder().build() }
         single {
             Retrofit.Builder()
-                .callFactory(OkHttpClient.Builder().build())
-                .baseUrl("https://pokeapi.co/api/v2/")
+                .client(get())
+                .baseUrl(Constants.BASE_URL)
+                .addCallAdapterFactory(EitherCallAdapterFactory())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
         }
     }
 
-    val DB = "DB"
-    val API = "API"
-
     val pokemonModule = module {
         single { (get() as Retrofit).create(PokemonService::class.java) }
-        single<PokemonDataSource>(named(API)) { PokemonApiDataSource(get()) }
-        single<PokemonDataSource>(named(DB)) { PokemonDBDataSource() }
-        single { PokemonRepository(get(named(API)), get(named(DB))) }
-        viewModel { PokemonListVM(androidApplication(),get()) }
+        single<PokemonDataSource>(named(DataSourceTypes.API)) { PokemonApiDataSource(get()) }
+        single<PokemonDataSource>(named(DataSourceTypes.DB)) { PokemonDBDataSource() }
+        single { PokemonRepository(get(named(DataSourceTypes.API)), get(named(DataSourceTypes.DB))) }
+        viewModel { PokemonListVM(get(),get()) }
     }
 
 

@@ -1,22 +1,30 @@
 package com.uratxe.pokedex.domain
 
+import android.os.Parcelable
 import com.unatxe.commons.utils.toInt
 import com.uratxe.pokedex.data.dto.FeatureLinkDTO
+import kotlinx.android.parcel.Parcelize
 
-class Pokemon(private val id: Int, private val name: String) {
+@Parcelize
+class Pokemon(val id: Int, val name: String): Parcelable {
     val url = "https://pokeapi.co/api/v2/pokemon/$id"
+    var isFavourite = false
 
     companion object{
+        fun mapList(dtoList: List<FeatureLinkDTO>): List<Pokemon> {
+            return dtoList.map { map(it) }
+        }
+
         fun map(dto: FeatureLinkDTO): Pokemon {
-            val regex = Regex("/d+/")
-            val id = dto.url.matches(regex).toInt()
+            val id = dto.url.split("/").filterNot { it == "" }.last().toInt()
             val pkmn = Pokemon(id, dto.name)
             return pkmn
         }
     }
 }
 
-enum class TypeSprite(val baseURL: String, val format: String) {
+@Parcelize
+enum class TypeSprite(val baseURL: String, val format: String): Parcelable {
     FRONT("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",".png"),
     BACK("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/",".png"),
     ARTWORK("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/",".png"),

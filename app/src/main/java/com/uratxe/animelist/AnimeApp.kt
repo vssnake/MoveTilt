@@ -8,6 +8,7 @@ import com.uratxe.animelist.features.list.data.AnimeApiDataSource
 import com.uratxe.animelist.features.list.data.AnimeDBDatasource
 import com.uratxe.animelist.features.list.data.AnimeDataSource
 import com.uratxe.animelist.features.list.data.AnimeRepository
+import com.uratxe.common.DataSourceTypes
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -19,7 +20,6 @@ class AnimeApp : Application(){
     override fun onCreate() {
         super.onCreate()
         initKoin()
-
         PreferencesManager.init(this)
     }
 
@@ -31,18 +31,15 @@ class AnimeApp : Application(){
         }
     }
 
-    val DB = "DB"
-    val API = "API"
-
     val appModule = module {
         single { AuthModule() }
         viewModel { AnimeListViewModel(get(), get()) }
     }
 
     val animeModule = module {
-        single<AnimeDataSource>(named(API)) { AnimeApiDataSource() }
-        single<AnimeDataSource>(named(DB)) { AnimeDBDatasource() }
-        single { AnimeRepository(get(named(API)), get(named(DB))) }
+        single<AnimeDataSource>(named(DataSourceTypes.API)) { AnimeApiDataSource() }
+        single<AnimeDataSource>(named(DataSourceTypes.DB)) { AnimeDBDatasource() }
+        single { AnimeRepository(get(named(DataSourceTypes.API)), get(named(DataSourceTypes.DB))) }
     }
 
 
