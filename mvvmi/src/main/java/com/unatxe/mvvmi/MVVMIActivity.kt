@@ -1,22 +1,22 @@
 package com.unatxe.mvvmi
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.unatxe.commons.data.exceptions.Failure
 import kotlin.reflect.KClass
 
 abstract class MVVMIActivity<VM : MVVMIViewModel<ViewData>, ViewData: MVVMIData>
     : AppCompatActivity() {
 
-    @LayoutRes
-    abstract fun layoutId(): Int
+    /**
+     * It's required to link a layout's viewBinding to an Activity
+     * It's required to ensure the link between activity and layout
+     */
+    abstract fun inflateMainViewBinding(): ViewBinding
 
     open val viewModel by lazy {
         ViewModelProvider.AndroidViewModelFactory(application).create(getViewModelClass().java)
@@ -24,9 +24,9 @@ abstract class MVVMIActivity<VM : MVVMIViewModel<ViewData>, ViewData: MVVMIData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layoutId())
+        setContentView(inflateMainViewBinding().root)
 
-        bindingView()
+        //bindingView()
 
         val rootView = (findViewById<ViewGroup>(android.R.id.content).getChildAt(0))
             .rootView as ViewGroup
@@ -54,8 +54,8 @@ abstract class MVVMIActivity<VM : MVVMIViewModel<ViewData>, ViewData: MVVMIData>
 
     /**
      * Set up DataBindings and ViewBindings in activity after {@link onCreate()}
-     */
-    abstract fun bindingView()
+
+    abstract fun bindingView() */
 
     /**
      * Used to create MVVMIViewModel

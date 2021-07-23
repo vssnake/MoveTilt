@@ -1,25 +1,36 @@
 package com.uratxe.pokedex.data
 
 import com.unatxe.commons.data.ApiError
-import com.unatxe.commons.data.exceptions.Failure
 import com.unatxe.commons.utils.Either
-import com.unatxe.commons.utils.runIO
-import com.uratxe.pokedex.data.dto.FeatureLinkDTO
+import com.unatxe.commons.utils.map
 import com.uratxe.pokedex.domain.Pokemon
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
-class PokemonRepository(private val api: PokemonDataSource, private val db: PokemonDataSource) {
+class PokemonRepository(private val api: PokemonDataSource, private val db: PokemonPersistenceDataSource) {
 
     fun allPokemons(): Flow<Either<ApiError, List<Pokemon>>>  {
-        return api.allPokemons().map { result ->
-            result.mapRight { Pokemon.mapList(it) }
-        }
+        return if(!db.arePokemonsLoaded()) {
+            api.allPokemons().map {
+                if (it.isRight) {
+                    it.either({},{ pokemonList ->
+                        db.addPokemons(pokemonList)
+                    })
+                }
+                it
+            }
+        } else db.allPokemons()
     }
 
-    fun pokemonDetail(): Flow<Either<ApiError, Pokemon>> {
-        return emptyFlow() /*api.pokemonDetail().map { result ->
-            result
-        }*/
+    fun pokemonDetail(id: Int): Flow<Either<ApiError, Pokemon>> {
+        return if(!db.hasPokemonDetail(id)) {
+            api.pokemonDetail(id).map {
+                if (it.isRight) {
+                    it.either({},{ pokemon ->
+                        db.addPokemonDetail(pokemon)
+                    })
+                }
+                it
+            }
+        } else db.pokemonDetail(id)
     }
 }

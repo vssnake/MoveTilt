@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipIconTint">@color/brown</item>
+        <item name="chipBackgroundColor">@color/orangeLight</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipStrokeColor">@color/brown</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textColor">@color/brown</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Caption</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">4dp</item>
+    </style>
 </resources>

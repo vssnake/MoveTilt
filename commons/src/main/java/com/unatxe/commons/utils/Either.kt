@@ -42,12 +42,6 @@ sealed class Either<out L, out R> {
             is Right -> fnR(b)
         }
 
-    fun <T>mapRight(fnMapR: (R) -> T): Either<out L, out T> =
-        when(this) {
-            is Left -> this
-            is Right -> Right(fnMapR(b))
-        }
-
 }
 
 // Credits to Alex Hart -> https://proandroiddev.com/kotlins-nothing-type-946de7d464fb

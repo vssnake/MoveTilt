@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
 class PokemonDBDataSource: PokemonDataSource {
-    override fun allPokemons(): Flow<Either<ApiError, List<FeatureLinkDTO>>> {
+    override fun allPokemons(): Flow<Either<ApiError, List<Pokemon>>> {
         TODO("Not yet implemented")
     }
 

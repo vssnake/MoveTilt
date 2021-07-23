@@ -12,4 +12,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="loading">Cargando</string>
     <string name="default_error">¡Ha ocurrido un error! :(</string>
+    <string name="width">Altura</string>
+    <string name="weigth">Peso</string>
+    <string name="abilities">Habilidades</string>
+    <string name="statistics">Estadísticas</string>
 </resources>

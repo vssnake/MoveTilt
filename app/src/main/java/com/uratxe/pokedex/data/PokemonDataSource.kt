@@ -8,6 +8,13 @@ import com.uratxe.pokedex.domain.Pokemon
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonDataSource {
-    fun allPokemons(): Flow<Either<ApiError, List<FeatureLinkDTO>>>
-    fun pokemonDetail(id: Int): Flow<Either<ApiError, Pokemon>>
+    fun allPokemons(): Flow<Either<ApiError, List<Pokemon>>>
+    fun pokemonDetail(pokemonID: Int): Flow<Either<ApiError, Pokemon>>
+}
+
+interface PokemonPersistenceDataSource: PokemonDataSource {
+    fun arePokemonsLoaded(): Boolean
+    fun hasPokemonDetail(id: Int): Boolean
+    fun addPokemons(pokemonList: List<Pokemon>)
+    fun addPokemonDetail(pokemon: Pokemon)
 }

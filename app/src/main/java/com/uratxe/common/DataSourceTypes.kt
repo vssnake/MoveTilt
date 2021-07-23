@@ -2,5 +2,6 @@ package com.uratxe.common
 
 enum class DataSourceTypes {
     API,
-    DB
+    DB,
+    MOCK_DB
 }

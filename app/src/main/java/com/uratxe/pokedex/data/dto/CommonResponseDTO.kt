@@ -1,5 +1,5 @@
 package com.uratxe.pokedex.data.dto
 
-data class AllPokemonsResponseDTO(
+data class CommonResponseDTO(
     val results: List<FeatureLinkDTO>
 )

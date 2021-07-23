@@ -2,6 +2,7 @@ package com.uratxe.pokedex.features.list.presentation
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.uratxe.common.KoinProyectActivity
 import com.uratxe.movetilt.R
 import com.uratxe.movetilt.databinding.ActivityAnimeListBinding
@@ -14,12 +15,9 @@ class PokemonListActivity: KoinProyectActivity<PokemonListVM, PokemonListData>()
     private lateinit var binding: ActivityAnimeListBinding
     private val adapter by lazy { PokemonsAdapter(viewModel, onPokemonSelect) }
 
-    override fun layoutId(): Int {
-        return R.layout.activity_anime_list
-    }
-
-    override fun bindingView() {
-        binding = ActivityAnimeListBinding.inflate(layoutInflater);
+    override fun inflateMainViewBinding(): ViewBinding {
+        binding = ActivityAnimeListBinding.inflate(layoutInflater)
+        return binding
     }
 
     override fun getViewModelClass(): KClass<PokemonListVM> {
@@ -27,8 +25,8 @@ class PokemonListActivity: KoinProyectActivity<PokemonListVM, PokemonListData>()
     }
 
     override fun setupViews() {
-        aal_rv.layoutManager = LinearLayoutManager(this)
-        aal_rv.adapter = adapter
+        binding.aalRv.layoutManager = LinearLayoutManager(this)
+        binding.aalRv.adapter = adapter
     }
 
     override fun onModelInitialized(data: PokemonListData) {
@@ -41,7 +39,7 @@ class PokemonListActivity: KoinProyectActivity<PokemonListVM, PokemonListData>()
         val intent = Intent(this, PokemonDetailActivity::class.java).apply {
             putExtra(POKEMON_ID, pokemon.id)
         }
-        //FIXME: startActivity(intent)
+        startActivity(intent)
     }
 
     companion object {

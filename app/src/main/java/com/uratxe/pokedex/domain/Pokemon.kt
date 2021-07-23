@@ -9,6 +9,7 @@ import kotlinx.android.parcel.Parcelize
 class Pokemon(val id: Int, val name: String): Parcelable {
     val url = "https://pokeapi.co/api/v2/pokemon/$id"
     var isFavourite = false
+    var hasDetail = false
 
     companion object{
         fun mapList(dtoList: List<FeatureLinkDTO>): List<Pokemon> {

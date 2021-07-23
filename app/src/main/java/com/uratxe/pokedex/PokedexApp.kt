@@ -6,6 +6,7 @@ import com.unatxe.commons.utils.PreferencesManager
 import com.uratxe.common.DataSourceTypes
 import com.uratxe.pokedex.data.*
 import com.uratxe.pokedex.data.services.PokemonService
+import com.uratxe.pokedex.features.detail.presentation.PokemonDetailVM
 import com.uratxe.pokedex.features.list.presentation.PokemonListVM
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -49,8 +50,10 @@ class PokedexApp: Application() {
         single { (get() as Retrofit).create(PokemonService::class.java) }
         single<PokemonDataSource>(named(DataSourceTypes.API)) { PokemonApiDataSource(get()) }
         single<PokemonDataSource>(named(DataSourceTypes.DB)) { PokemonDBDataSource() }
-        single { PokemonRepository(get(named(DataSourceTypes.API)), get(named(DataSourceTypes.DB))) }
+        single<PokemonPersistenceDataSource>(named(DataSourceTypes.MOCK_DB)) { PokemonMemoryDataSource() }
+        single { PokemonRepository(get(named(DataSourceTypes.API)), get(named(DataSourceTypes.MOCK_DB))) }
         viewModel { PokemonListVM(get(),get()) }
+        viewModel { PokemonDetailVM(get(),get()) }
     }
 
 

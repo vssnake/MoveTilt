@@ -2,7 +2,6 @@ import com.uratxe.movetilt.Android
 import com.uratxe.movetilt.AndroidX
 import com.uratxe.movetilt.Firebase
 import com.uratxe.movetilt.Libs
-import com.uratxe.movetilt.Batura
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -15,6 +14,7 @@ plugins {
     id("kotlin-android-extensions")
     id("com.apollographql.android")
     id("androidx.navigation.safeargs.kotlin")
+    kotlin("kapt")
 }
 
 
@@ -135,6 +135,9 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:${Libs.retrofit}")
     implementation("com.squareup.retrofit2:converter-moshi:${Libs.retrofit}")
+    //Moshi
+    implementation("com.squareup.moshi:moshi:$Libs.moshi")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$Libs.moshi")
     //JWT
     implementation("com.auth0.android:jwtdecode:${Libs.jwtdecode}")
     //Glide
