@@ -55,14 +55,13 @@ dependencies {
 
     implementation("com.google.firebase:firebase-core:17.4.3")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     // For Kotlin use lifecycle-viewmodel-ktx
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
+    
     implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
     implementation("org.koin:koin-android-viewmodel:2.1.6")
     implementation("org.koin:koin-android-scope:2.1.6")
